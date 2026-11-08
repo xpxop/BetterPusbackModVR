@@ -37,6 +37,8 @@ DIST_FILES=(
     'COPYING'					''
     'data/msgs/README.txt'			''
     'data/msgs/cc_aliases.cfg'			''
+    'data/pushback_procedures/README.txt'	''
+    'data/pushback_procedures/EXAMPLE.txt'	''
     'objects/tugs/LIVERIES_HOWTO.txt'		''
 	'objects/tugs/readme.txt'		''
     'objects/night_lamp.obj'			''

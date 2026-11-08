@@ -1,0 +1,28 @@
+# Example only - this file is never loaded (it is not named after an
+# airport). Copy it to <ICAO>.txt and replace the content with procedures
+# transcribed from the airport's official publication.
+
+# Every stand of apron "A1x": push back and swing the tail to the left.
+stand A1*
+name Push back, tail left
+source Example
+turn tail left
+end
+
+# One specific stand with a more detailed procedure.
+stand Gate A12
+name Push back facing west (tail east)
+source Example - AIP XXXX AD 2.20 para 3.2
+back 20
+turn tail E
+back 10
+end
+
+# Push back onto the taxiway, then pull forward a little.
+stand B4
+name Push to taxiway lane, pull forward
+source Example
+back 35
+turn face 180 cw radius 35
+forward 8
+end

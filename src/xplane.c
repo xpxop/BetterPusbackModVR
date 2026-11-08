@@ -47,6 +47,7 @@
 #include "emergency_tow.h"
 #include "ff_a320_intf.h"
 #include "ground_ops_ui.h"
+#include "planner_map_ui.h"
 #include "msg.h"
 #include "tug.h"
 #include "xplane.h"
@@ -1326,6 +1327,7 @@ PLUGIN_API void
 XPluginStop(void)
 {
     ground_ops_ui_fini();
+    planner_map_ui_fini();
     cfg_cleanup();
     bp_conf_fini();
     acfutils_xlate_fini();
@@ -1609,6 +1611,7 @@ bp_priv_disable(void)
     XPLMUnregisterCommandHandler(reload_cmd, reload_handler, 1, NULL);
 
     bp_fini();
+    planner_map_ui_fini();
     tug_glob_fini();
     cab_view_fini();
 

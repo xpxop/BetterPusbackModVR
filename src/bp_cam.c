@@ -62,7 +62,9 @@
 #include "emergency_tow.h"
 #include "gate_route_cache.h"
 #include "gate_route_slots.h"
+#include "planner_api.h"
 #include "planner_cache.h"
+#include "planner_map_ui.h"
 #include "xplane.h"
 #include "cfg.h"
 #include "msg.h"
@@ -135,6 +137,8 @@ static int saved_cloud_types[3];
 
 static planner_prediction_key_t planner_pred_key;
 static gate_route_context_t planner_gate_context;
+/* B_TRUE while the planner runs in the 2D map window (VR) */
+static bool_t planner_map_active = B_FALSE;
 
 typedef enum {
     PLANNER_ROUTE_PROMPT_NONE,
@@ -596,14 +600,70 @@ planner_prepare_gate_context(double *match_distance, double *match_heading)
         match_distance, match_heading);
 }
 
+static void
+planner_next_start(vect2_t *start_pos, double *start_hdg)
+{
+    seg_t *seg = list_tail(&bp.segs);
+
+    if (seg != NULL)
+    {
+        *start_pos = seg->end_pos;
+        *start_hdg = seg->end_hdg;
+    }
+    else
+    {
+        *start_pos = VECT2(dr_getf(&drs.local_x),
+            -dr_getf(&drs.local_z)); /* inverted X-Plane Z */
+        *start_hdg = dr_getf(&drs.hdg);
+    }
+}
+
+/*
+ * Predicts the route from the end of the committed route to `end_pos` /
+ * `end_hdg` into pred_segs. Shared by the camera planner and the 2D map
+ * planner; results are cached while the inputs do not change.
+ */
+static int
+planner_predict_to(vect2_t end_pos, double end_hdg)
+{
+    vect2_t start_pos;
+    double start_hdg;
+    seg_t *seg;
+    int n;
+    uint64_t base_signature = planner_committed_signature();
+
+    planner_next_start(&start_pos, &start_hdg);
+    if (planner_prediction_key_matches(&planner_pred_key,
+        base_signature, start_pos.x, start_pos.y, start_hdg,
+        end_pos.x, end_pos.y, end_hdg,
+        PREDICTION_KEY_POSITION_EPSILON,
+        PREDICTION_KEY_HEADING_EPSILON)) {
+        planner_cursor_reuse_count++;
+        return (int)list_count(&pred_segs);
+    }
+
+    planner_clear_predicted_segments();
+    planner_cursor_solve_count++;
+    n = compute_segs(&bp.veh, start_pos, start_hdg, end_pos,
+        end_hdg, &pred_segs);
+    planner_prediction_key_set(&planner_pred_key, base_signature,
+        start_pos.x, start_pos.y, start_hdg, end_pos.x, end_pos.y,
+        end_hdg);
+
+    if (n > 0)
+    {
+        seg = list_tail(&pred_segs);
+        seg->user_placed = B_TRUE;
+    }
+    return (MAX(n, 0));
+}
+
 static int
 cam_ctl(XPLMCameraPosition_t *pos, int losing_control, void *refcon)
 {
     int x, y;
-    double dx, dy, start_hdg;
-    vect2_t start_pos, end_pos;
-    seg_t *seg;
-    int n;
+    double dx, dy;
+    vect2_t end_pos;
 
     UNUSED(refcon);
 
@@ -633,49 +693,10 @@ cam_ctl(XPLMCameraPosition_t *pos, int losing_control, void *refcon)
         return (1);
     }
 
-    seg = list_tail(&bp.segs);
-    if (seg != NULL)
-    {
-        start_pos = seg->end_pos;
-        start_hdg = seg->end_hdg;
-    }
-    else
-    {
-        start_pos = VECT2(dr_getf(&drs.local_x),
-            -dr_getf(&drs.local_z)); /* inverted X-Plane Z */
-        start_hdg = dr_getf(&drs.hdg);
-    }
-
     end_pos = vect2_add(VECT2(cam_pos.x, cam_pos.z),
                         vect2_rot(VECT2(dx, dy), pos->heading));
     cursor_world_pos = VECT2(end_pos.x, end_pos.y);
-
-    {
-        uint64_t base_signature = planner_committed_signature();
-
-        if (planner_prediction_key_matches(&planner_pred_key,
-            base_signature, start_pos.x, start_pos.y, start_hdg,
-            end_pos.x, end_pos.y, cursor_hdg,
-            PREDICTION_KEY_POSITION_EPSILON,
-            PREDICTION_KEY_HEADING_EPSILON)) {
-            planner_cursor_reuse_count++;
-            return (1);
-        }
-
-        planner_clear_predicted_segments();
-        planner_cursor_solve_count++;
-        n = compute_segs(&bp.veh, start_pos, start_hdg, end_pos,
-            cursor_hdg, &pred_segs);
-        planner_prediction_key_set(&planner_pred_key, base_signature,
-            start_pos.x, start_pos.y, start_hdg, end_pos.x, end_pos.y,
-            cursor_hdg);
-    }
-
-    if (n > 0)
-    {
-        seg = list_tail(&pred_segs);
-        seg->user_placed = B_TRUE;
-    }
+    (void)planner_predict_to(end_pos, cursor_hdg);
 
     return (1);
 }
@@ -1911,6 +1932,298 @@ planner_route_prompt_choose(unsigned choice)
     }
 }
 
+/*
+ * Deletes the last segment and every automatically generated segment back
+ * to the previous user-placed one.
+ */
+static void
+planner_undo_last(void)
+{
+    if (list_tail(&bp.segs) != NULL)
+        planner_gate_routes.dirty = B_TRUE;
+    free(list_remove_tail(&bp.segs));
+    for (seg_t *seg = list_tail(&bp.segs); seg != NULL &&
+                                           !seg->user_placed;
+         seg = list_tail(&bp.segs))
+    {
+        list_remove_tail(&bp.segs);
+        free(seg);
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* Camera-independent planner API (planner_api.h)                       */
+/* ------------------------------------------------------------------ */
+
+bool_t
+bp_planner_is_open(void)
+{
+    return (cam_inited);
+}
+
+bool_t
+bp_planner_map_mode(void)
+{
+    return (cam_inited && planner_map_active);
+}
+
+void
+bp_planner_aircraft_pose(vect2_t *pos, double *hdg)
+{
+    *pos = VECT2(dr_getf(&drs.local_x), -dr_getf(&drs.local_z));
+    *hdg = dr_getf(&drs.hdg);
+}
+
+void
+bp_planner_next_start(vect2_t *pos, double *hdg)
+{
+    planner_next_start(pos, hdg);
+}
+
+const list_t *
+bp_planner_segs(void)
+{
+    return (&bp.segs);
+}
+
+const list_t *
+bp_planner_pred_segs(void)
+{
+    return (&pred_segs);
+}
+
+int
+bp_planner_predict(vect2_t end_pos, double end_hdg)
+{
+    if (!cam_inited ||
+        planner_gate_routes.prompt != PLANNER_ROUTE_PROMPT_NONE)
+        return (0);
+    return (planner_predict_to(end_pos, end_hdg));
+}
+
+void
+bp_planner_clear_prediction(void)
+{
+    if (!cam_inited)
+        return;
+    planner_clear_predicted_segments();
+    planner_prediction_key_invalidate(&planner_pred_key);
+}
+
+bool_t
+bp_planner_commit_prediction(void)
+{
+    if (!cam_inited || list_head(&pred_segs) == NULL)
+        return (B_FALSE);
+    planner_gate_routes.dirty = B_TRUE;
+    list_move_tail(&bp.segs, &pred_segs);
+    planner_prediction_key_invalidate(&planner_pred_key);
+    return (B_TRUE);
+}
+
+void
+bp_planner_undo(void)
+{
+    if (!cam_inited)
+        return;
+    planner_undo_last();
+    planner_prediction_key_invalidate(&planner_pred_key);
+}
+
+void
+bp_planner_clear(void)
+{
+    if (!cam_inited)
+        return;
+    if (list_head(&bp.segs) != NULL)
+        planner_gate_routes.dirty = B_TRUE;
+    bp_delete_all_segs();
+    planner_clear_predicted_segments();
+    planner_prediction_key_invalidate(&planner_pred_key);
+}
+
+void
+bp_planner_accept(void)
+{
+    if (cam_inited)
+        planner_route_accept_and_close();
+}
+
+void
+bp_planner_cancel(void)
+{
+    if (!cam_inited)
+        return;
+    bp_delete_all_segs();
+    XPLMCommandOnce(XPLMFindCommand("BetterPushback/stop_planner"));
+}
+
+void
+bp_planner_connect_first(void)
+{
+    if (!cam_inited)
+        return;
+    bp_delete_all_segs();
+    XPLMCommandOnce(XPLMFindCommand("BetterPushback/connect_first"));
+}
+
+bool_t
+bp_planner_apply_poses(const vect2_t *pos, const double *hdg, size_t n)
+{
+    vect2_t start_pos;
+    double start_hdg;
+
+    if (!cam_inited || n == 0)
+        return (B_FALSE);
+    bp_delete_all_segs();
+    planner_clear_predicted_segments();
+    planner_prediction_key_invalidate(&planner_pred_key);
+    planner_gate_routes.dirty = B_TRUE;
+
+    for (size_t i = 0; i < n; i++) {
+        int count;
+
+        planner_next_start(&start_pos, &start_hdg);
+        count = compute_segs(&bp.veh, start_pos, start_hdg, pos[i], hdg[i],
+            &bp.segs);
+        if (count < 0) {
+            logMsg(BP_WARN_LOG "Pushback procedure step %u could not be "
+                "planned for this aircraft (turn too tight?)",
+                (unsigned)i + 1);
+            bp_delete_all_segs();
+            return (B_FALSE);
+        }
+        if (count > 0)
+            ((seg_t *)list_tail(&bp.segs))->user_placed = B_TRUE;
+    }
+    return (list_head(&bp.segs) != NULL);
+}
+
+bp_planner_prompt_t
+bp_planner_prompt(void)
+{
+    if (!cam_inited)
+        return (BP_PLANNER_PROMPT_NONE);
+    switch (planner_gate_routes.prompt) {
+    case PLANNER_ROUTE_PROMPT_SELECT:
+        return (BP_PLANNER_PROMPT_SELECT);
+    case PLANNER_ROUTE_PROMPT_REPLACE:
+        return (BP_PLANNER_PROMPT_REPLACE);
+    default:
+        return (BP_PLANNER_PROMPT_NONE);
+    }
+}
+
+unsigned
+bp_planner_prompt_option_count(void)
+{
+    return (planner_route_prompt_option_count());
+}
+
+bool_t
+bp_planner_prompt_option_enabled(unsigned choice)
+{
+    return (planner_route_prompt_choice_enabled(choice));
+}
+
+void
+bp_planner_prompt_option_text(unsigned choice, char *text, size_t cap)
+{
+    planner_route_prompt_option_text(choice, text, cap);
+}
+
+void
+bp_planner_prompt_title(char *title, size_t title_cap, char *instruction,
+    size_t instruction_cap)
+{
+    if (planner_gate_routes.prompt == PLANNER_ROUTE_PROMPT_SELECT) {
+        (void)snprintf(title, title_cap, "Saved routes for %s %s",
+            planner_gate_context.airport, planner_gate_context.ramp);
+        (void)snprintf(instruction, instruction_cap,
+            "Choose a saved route or begin a new manual plan.");
+    } else {
+        (void)snprintf(title, title_cap,
+            "Both saved-route slots are occupied");
+        (void)snprintf(instruction, instruction_cap,
+            "Choose which route to replace, use this plan once, or go back.");
+    }
+}
+
+void
+bp_planner_prompt_choose(unsigned choice)
+{
+    if (cam_inited)
+        planner_route_prompt_choose(choice);
+}
+
+const char *
+bp_planner_message(void)
+{
+    return (planner_route_message);
+}
+
+bool_t
+bp_planner_gate(char *airport, size_t airport_cap, char *ramp,
+    size_t ramp_cap)
+{
+    if (!planner_gate_context.recognized)
+        return (B_FALSE);
+    strlcpy(airport, planner_gate_context.airport, airport_cap);
+    strlcpy(ramp, planner_gate_context.ramp, ramp_cap);
+    return (B_TRUE);
+}
+
+void
+bp_planner_airport(char *icao, size_t cap)
+{
+    char buf[8] = {0};
+
+    if (planner_gate_context.recognized &&
+        planner_gate_context.airport[0] != '\0') {
+        strlcpy(icao, planner_gate_context.airport, cap);
+        return;
+    }
+    (void)find_nearest_airport(buf);
+    strlcpy(icao, buf, cap);
+}
+
+size_t
+bp_planner_acf_outline(vect2_t pos, double hdg, vect2_t *out,
+    size_t max_pts)
+{
+    size_t n = 0;
+
+    if (bp_ls.outline == NULL)
+        return (0);
+    for (size_t i = 0; i + 1 < bp_ls.outline->num_pts; i++) {
+        vect2_t a = bp_ls.outline->pts[i], b = bp_ls.outline->pts[i + 1];
+
+        if (IS_NULL_VECT(a) || IS_NULL_VECT(b))
+            continue;
+        for (int side = 0; side < 2 && n + 2 <= max_pts; side++) {
+            double sx = side == 0 ? 1 : -1;
+
+            out[n++] = vect2_add(pos, vect2_rot(VECT2(sx * a.x,
+                bp.acf.main_z - a.y), hdg));
+            out[n++] = vect2_add(pos, vect2_rot(VECT2(sx * b.x,
+                bp.acf.main_z - b.y), hdg));
+        }
+    }
+    return (n);
+}
+
+double
+bp_planner_acf_semispan(void)
+{
+    return (bp_ls.outline != NULL ? bp_ls.outline->semispan : 0);
+}
+
+void
+bp_planner_mark_dirty(void)
+{
+    planner_gate_routes.dirty = B_TRUE;
+}
+
 static void
 fake_win_draw(XPLMWindowID inWindowID, void *inRefcon)
 {
@@ -2236,16 +2549,7 @@ key_sniffer(char inChar, XPLMKeyFlags inFlags, char inVirtualKey, void *refcon)
     case XPLM_VK_BACK:
     case XPLM_VK_DELETE:
         /* Delete the segments up to the next user-placed segment */
-        if (list_tail(&bp.segs) != NULL)
-            planner_gate_routes.dirty = B_TRUE;
-        free(list_remove_tail(&bp.segs));
-        for (seg_t *seg = list_tail(&bp.segs); seg != NULL &&
-                                               !seg->user_placed;
-             seg = list_tail(&bp.segs))
-        {
-            list_remove_tail(&bp.segs);
-            free(seg);
-        }
+        planner_undo_last();
         return (0);
     case XPLM_VK_SPACE:
         bp_delete_all_segs();
@@ -2426,23 +2730,32 @@ bp_cam_start(void)
     }
 #endif /* !PB_DEBUG_INTF */
 
-    push_reset_fov_values();
-    eye_track_debut();
+    /*
+     * In VR (or when the pilot prefers it) the planner runs in a 2D map
+     * window that lives inside the cockpit instead of taking over the
+     * camera, which cannot work with a headset.
+     */
+    planner_map_active = planner_map_ui_wanted();
 
-    initMonitorOrigin();
-    fake_win_ops.left = monitor_def.x_origin;
-    fake_win_ops.right = monitor_def.x_origin + monitor_def.w;
-    fake_win_ops.bottom = monitor_def.y_origin;
-    fake_win_ops.top = monitor_def.y_origin + monitor_def.h;
+    if (!planner_map_active) {
+        push_reset_fov_values();
+        eye_track_debut();
 
-    circle_view_cmd = XPLMFindCommand("sim/view/circle");
-    ASSERT(circle_view_cmd != NULL);
-    XPLMCommandOnce(circle_view_cmd);
+        initMonitorOrigin();
+        fake_win_ops.left = monitor_def.x_origin;
+        fake_win_ops.right = monitor_def.x_origin + monitor_def.w;
+        fake_win_ops.bottom = monitor_def.y_origin;
+        fake_win_ops.top = monitor_def.y_origin + monitor_def.h;
 
-    fake_win = XPLMCreateWindowEx(&fake_win_ops);
-    ASSERT(fake_win != NULL);
-    XPLMBringWindowToFront(fake_win);
-    XPLMTakeKeyboardFocus(fake_win);
+        circle_view_cmd = XPLMFindCommand("sim/view/circle");
+        ASSERT(circle_view_cmd != NULL);
+        XPLMCommandOnce(circle_view_cmd);
+
+        fake_win = XPLMCreateWindowEx(&fake_win_ops);
+        ASSERT(fake_win != NULL);
+        XPLMBringWindowToFront(fake_win);
+        XPLMTakeKeyboardFocus(fake_win);
+    }
 
     list_create(&pred_segs, sizeof(seg_t), offsetof(seg_t, node));
     planner_prediction_key_init(&planner_pred_key);
@@ -2457,18 +2770,20 @@ bp_cam_start(void)
                     dr_getf(&drs.local_y), -dr_getf(&drs.local_z));
     cam_hdg = dr_getf(&drs.hdg);
     cursor_hdg = dr_getf(&drs.hdg);
-    XPLMControlCamera(xplm_ControlCameraForever, cam_ctl, NULL);
+    if (!planner_map_active) {
+        XPLMControlCamera(xplm_ControlCameraForever, cam_ctl, NULL);
 
-    cam_lamp_inst = XPLMCreateInstance(cam_lamp_obj, cam_lamp_drefs);
+        cam_lamp_inst = XPLMCreateInstance(cam_lamp_obj, cam_lamp_drefs);
 
-    for (int i = 0; view_cmds[i].name != NULL; i++)
-    {
-        view_cmds[i].cmd = XPLMFindCommand(view_cmds[i].name);
-        VERIFY(view_cmds[i].cmd != NULL);
-        XPLMRegisterCommandHandler(view_cmds[i].cmd, move_camera,
-                                   1, (void *)(uintptr_t)i);
+        for (int i = 0; view_cmds[i].name != NULL; i++)
+        {
+            view_cmds[i].cmd = XPLMFindCommand(view_cmds[i].name);
+            VERIFY(view_cmds[i].cmd != NULL);
+            XPLMRegisterCommandHandler(view_cmds[i].cmd, move_camera,
+                                       1, (void *)(uintptr_t)i);
+        }
+        XPLMRegisterKeySniffer(key_sniffer, 1, NULL);
     }
-    XPLMRegisterKeySniffer(key_sniffer, 1, NULL);
 
     if (!emergency_tow_allows_persistent_routes()) {
         memset(&planner_gate_context, 0, sizeof(planner_gate_context));
@@ -2540,7 +2855,7 @@ bp_cam_start(void)
     saved_visibility = dr_getf(&drs.visibility);
     saved_real_wx = dr_geti(&drs.use_real_wx);
 
-    if (bp_xp_ver < 12000)
+    if (!planner_map_active && bp_xp_ver < 12000)
     {
         saved_cloud_types[0] = dr_geti(&drs.cloud_types[0]);
         saved_cloud_types[1] = dr_geti(&drs.cloud_types[1]);
@@ -2551,7 +2866,7 @@ bp_cam_start(void)
         dr_seti(&drs.cloud_types[2], 0);
         dr_seti(&drs.use_real_wx, 0);
     }
-    if ((bp_xp_ver >= 12000) && (bp_xp_ver < 13000))
+    if (!planner_map_active && (bp_xp_ver >= 12000) && (bp_xp_ver < 13000))
     {
         float zero_cloud[3] = {0.0};
         dr_getvf32(&drs.cloud_types[0], fsaved_cloud_types, 0, 3);
@@ -2570,6 +2885,13 @@ bp_cam_start(void)
     {
         snprintf(update_message, sizeof(update_message), "New version of BetterPushBack available: %s (Use SkunkCrafts Updater to update)", updateAvailable);
         init_bottom_msg(update_message);
+    }
+
+    if (planner_map_active) {
+        planner_map_ui_open();
+        logMsg(BP_INFO_LOG "Planner opened in the map window%s",
+            planner_map_ui_vr_enabled() ? " (VR)" : "");
+        return (B_TRUE);
     }
 
     if (bp_floop_nightlamp == NULL)
@@ -2655,36 +2977,44 @@ bp_cam_stop(void)
     planner_prediction_key_invalidate(&planner_pred_key);
     list_destroy(&pred_segs);
 
-    XPLMDestroyWindow(fake_win);
+    if (planner_map_active) {
+        planner_map_ui_close();
+    } else {
+        XPLMDestroyWindow(fake_win);
+        fake_win = NULL;
 
-    for (int i = 0; view_cmds[i].name != NULL; i++)
-    {
-        XPLMUnregisterCommandHandler(view_cmds[i].cmd, move_camera,
-                                     1, (void *)(uintptr_t)i);
-    }
-    XPLMUnregisterKeySniffer(key_sniffer, 1, NULL);
+        for (int i = 0; view_cmds[i].name != NULL; i++)
+        {
+            XPLMUnregisterCommandHandler(view_cmds[i].cmd, move_camera,
+                                         1, (void *)(uintptr_t)i);
+        }
+        XPLMUnregisterKeySniffer(key_sniffer, 1, NULL);
 
-    cockpit_view_cmd = XPLMFindCommand("sim/view/3d_cockpit_cmnd_look");
-    ASSERT(cockpit_view_cmd != NULL);
-    XPLMCommandOnce(cockpit_view_cmd);
+        cockpit_view_cmd = XPLMFindCommand("sim/view/3d_cockpit_cmnd_look");
+        ASSERT(cockpit_view_cmd != NULL);
+        XPLMCommandOnce(cockpit_view_cmd);
 
-    dr_setf(&drs.visibility, saved_visibility);
-    if (bp_xp_ver < 12000)
-    {
-        dr_seti(&drs.cloud_types[0], saved_cloud_types[0]);
-        dr_seti(&drs.cloud_types[1], saved_cloud_types[1]);
-        dr_seti(&drs.cloud_types[2], saved_cloud_types[2]);
+        dr_setf(&drs.visibility, saved_visibility);
+        if (bp_xp_ver < 12000)
+        {
+            dr_seti(&drs.cloud_types[0], saved_cloud_types[0]);
+            dr_seti(&drs.cloud_types[1], saved_cloud_types[1]);
+            dr_seti(&drs.cloud_types[2], saved_cloud_types[2]);
+        }
+        if ((bp_xp_ver >= 12000) && (bp_xp_ver < 13000))
+        {
+            dr_setvf32(&drs.cloud_types[0], fsaved_cloud_types, 0, 3);
+        }
+        dr_seti(&drs.use_real_wx, saved_real_wx);
     }
-    if ((bp_xp_ver >= 12000) && (bp_xp_ver < 13000))
-    {
-        dr_setvf32(&drs.cloud_types[0], fsaved_cloud_types, 0, 3);
-    }
-    dr_seti(&drs.use_real_wx, saved_real_wx);
     cam_inited = B_FALSE;
     planner_open = B_FALSE; /* BP_DATAREF planner_open */
 
-    pop_fov_values();
-    eye_track_fini();
+    if (!planner_map_active) {
+        pop_fov_values();
+        eye_track_fini();
+    }
+    planner_map_active = B_FALSE;
     clear_bottom_msg();
 
     if (!slave_mode)

@@ -131,6 +131,41 @@ The blue line is the planned nosewheel trajectory. The translucent magenta band
 is a wingspan-wide visual-clearance aid. It is not automatic collision
 detection; the pilot remains responsible for verifying the route and clearance.
 
+### Plan in the map window (VR)
+
+The overhead planner moves the X-Plane camera and needs a mouse and keyboard,
+so it cannot be used with a VR headset. In VR the planner therefore opens as a
+**map window** that X-Plane places in the cockpit like other plugin windows.
+Choose the behavior in **Preferences > Pushback planner view**:
+
+| Setting | Planner |
+| --- | --- |
+| Map window in VR (default) | Map window in VR, overhead camera on a monitor |
+| Always map window | Map window everywhere |
+| Always top-down camera | The classic overhead planner |
+
+The map is drawn from the active airport's `apt.dat` (custom scenery first, in
+`scenery_packs.ini` order, then the global airports): pavement, painted taxi
+lines, runways and stands. Airports without painted lines show their taxi
+routing network instead. Your aircraft is drawn in white, the end of the
+committed route in green and the target of the next segment in amber (red when
+the target cannot be reached).
+
+1. Click the map where the next segment should end. With **Snap to taxi
+   lines** on, the target heading aligns with the nearest taxi line.
+2. Adjust the target heading with the ±5/±15 buttons, **Tail left 90** /
+   **Tail right 90**, or by clicking the compass dial.
+3. Press **Add segment**. Repeat for further segments, or use **Undo** /
+   **Clear**.
+4. Press **Accept route**. **Connect tug first** and **Cancel** work as in the
+   overhead planner.
+
+Drag the map to pan and use the mouse wheel or **Zoom +/-** to zoom;
+**Center** returns to the aircraft and **Heading up** rotates the map with the
+aircraft. With **Click adds segment** enabled a click commits the segment
+immediately, like the overhead planner. Saved-route choices appear as buttons
+on the map.
+
 ### Release the parking brake
 
 When the tug is connected and the route is ready, the panel displays the next
@@ -194,6 +229,33 @@ global airport scenery has changed, its derived airport database is rebuilt
 automatically. Saved push-route slots are stored separately and are not removed
 by this rebuild. The first startup after a scenery change can therefore take
 longer than usual.
+
+### Stand default procedures
+
+Besides the two per-aircraft route slots, each stand can have **default
+pushback procedures** that work for every aircraft. A procedure is a short list
+of steps such as "push back 20 m, turn until the tail points east, push back
+10 m"; BetterPushback turns it into a route for the current aircraft with the
+normal planner, widening the turns automatically if the aircraft cannot turn
+as tightly as written.
+
+- In the map planner, the **Stand procedures** list shows the procedures for
+  the stand you are parked at. Click one to load it, then review, edit or
+  accept it.
+- **Save as stand default** stores the current route as your default for the
+  stand. Your defaults are written to
+  `Output/preferences/BetterPushback_procedures/<ICAO>.txt` and are listed
+  first (marked `*`).
+- Procedures transcribed from official sources (AIP AD 2.20, airport apron or
+  ground handling manuals) can be placed in
+  `plugins/BetterPushback/data/pushback_procedures/<ICAO>.txt`. The format is
+  described in `README.txt` in that folder, with examples in `EXAMPLE.txt`.
+- **Preferences > Auto-load stand default procedure** loads the first matching
+  procedure automatically when the map planner opens and no saved-route choice
+  is pending.
+
+The stand is identified from the recognized published start; otherwise the
+nearest `apt.dat` stand within 40 m of the aircraft is used.
 
 ## 6. Emergency Tow
 

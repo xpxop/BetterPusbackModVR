@@ -60,6 +60,7 @@ visual acceptance still requires the owner's macOS simulator check.
 | 8 | Automatic disconnect and tug-driver presentation | In progress | Phases 3, 6 |
 | 9 | Compatibility, performance, and long-session hardening | In progress | Phases 1-8 |
 | 10 | Release candidate, documentation, and packaging | Pending | Phase 9 |
+| 11 | VR map planner and stand default procedures | In review | Phase 7 |
 
 Detailed UI behavior is defined in `GROUND_OPS_UI_DESIGN.md`.
 

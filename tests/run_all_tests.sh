@@ -5,6 +5,7 @@ test_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 for runner in \
     run_airport_cache_manifest_tests.sh \
+    run_airport_map_tests.sh \
     run_emergency_tow_tests.sh \
     run_gate_route_math_tests.sh \
     run_gate_route_slots_tests.sh \
@@ -16,6 +17,8 @@ for runner in \
     run_ui_click_sound_tests.sh \
     run_ground_ops_window_state_tests.sh \
     run_planner_cache_tests.sh \
+    run_procedure_segments_tests.sh \
+    run_pushback_procedures_tests.sh \
     run_vehicle_physics_tests.sh \
     run_wing_walker_logic_tests.sh
 do

@@ -35,6 +35,7 @@
 #include "cfg.h"
 #include "ground_ops_ui.h"
 #include "msg.h"
+#include "planner_map_ui.h"
 #include "ui_runtime.h"
 #include "ui_click_sound.h"
 #include "xplane.h"
@@ -58,7 +59,7 @@ static bool_t inited = B_FALSE;
 bool_t setup_view_callback_is_alive = B_FALSE;
 
 #define MAIN_WINDOW_W 800
-#define MAIN_WINDOW_H 900
+#define MAIN_WINDOW_H 960
 
 #define ROUNDED 8.0f
 #define TOOLTIP_BG_COLOR ImVec4(0.2f, 0.3f, 0.8f, 1.0f)
@@ -249,6 +250,24 @@ comboList_t pushback_interface_list = {
     pushback_interface_list_, IM_ARRAYSIZE(pushback_interface_list_),
     "##pushback_interface", BP_INTERFACE_MODE_GROUND_OPS};
 
+comboList_t_ planner_map_mode_list_[] = {
+    {"Map window in VR", B_FALSE, "0"},
+    {"Always map window", B_FALSE, "1"},
+    {"Always top-down camera", B_FALSE, "2"}};
+
+comboList_t planner_map_mode_list = {
+    planner_map_mode_list_, IM_ARRAYSIZE(planner_map_mode_list_),
+    "##planner_map_mode", PLANNER_MAP_MODE_AUTO};
+
+const char *planner_map_mode_tooltip =
+    "How the pushback planner is shown. The map window is a 2D airport map\n"
+    "that X-Plane places inside the cockpit in VR; the top-down camera is\n"
+    "the classic planner, which cannot be used with a VR headset.";
+const char *planner_auto_apply_tooltip =
+    "When the stand has a default pushback procedure (from the plugin's\n"
+    "data/pushback_procedures folder or saved by you), load it automatically\n"
+    "when the map planner opens. You can still edit or replace it.";
+
 comboList_t_ crew_lang_list_[] = {
     {"My language only at domestic airports", B_FALSE, "0"},
     {"My language at all airports", B_FALSE, "1"},
@@ -314,6 +333,7 @@ private:
   bool_t disco_when_done;
   bool_t display_marshaller;
   bool_t auto_expand_actions;
+  bool_t planner_auto_apply;
   bool_t ignore_park_brake;
   bool_t hide_magic_squares;
   bool_t dont_hide;
@@ -405,6 +425,9 @@ void SettingsWindow::LoadConfig(void) {
   auto_expand_actions = B_FALSE;
   (void)conf_get_b(bp_conf, "ground_ops_auto_expand_actions",
                    &auto_expand_actions);
+
+  planner_map_mode_list.selected = planner_map_ui_get_mode();
+  planner_auto_apply = planner_map_ui_get_auto_apply();
 
 
   display_marshaller = B_TRUE;
@@ -730,6 +753,26 @@ void SettingsWindow::buildInterface() {
         pushback_interface_mode = bp_get_interface_mode();
         pushback_interface_list.selected = pushback_interface_mode;
       }
+    }
+
+    ImGui::TableNextRow();
+    ImGui::TableNextColumn();
+    ImGui::Text("%s", "Pushback planner view");
+    Tooltip(planner_map_mode_tooltip);
+    ImGui::TableNextColumn();
+    ImGui::SetNextItemWidth(combowithWidth);
+    if (comboList(&planner_map_mode_list)) {
+      planner_map_ui_set_mode(
+          static_cast<planner_map_mode_t>(planner_map_mode_list.selected));
+    }
+
+    ImGui::TableNextRow();
+    ImGui::TableNextColumn();
+    ImGui::Text("%s", "Auto-load stand default procedure");
+    Tooltip(planner_auto_apply_tooltip);
+    ImGui::TableNextColumn();
+    if (ImGui::Checkbox("##planner_auto_apply", (bool *)&planner_auto_apply)) {
+      planner_map_ui_set_auto_apply(planner_auto_apply);
     }
 
 
