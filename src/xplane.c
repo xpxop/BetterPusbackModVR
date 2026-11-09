@@ -31,6 +31,7 @@
 #include <acfutils/core.h>
 #include <acfutils/crc64.h>
 #include <acfutils/dr_cmd_reg.h>
+#include <acfutils/except.h>
 #include <acfutils/glew.h>
 #include <acfutils/helpers.h>
 #include <acfutils/intl.h>
@@ -1157,6 +1158,8 @@ XPluginStart(char *name, char *sig, char *desc)
     GLenum err;
 
     log_init(XPLMDebugString, "BpB");
+    /* Write a backtrace to Log.txt if the plugin crashes */
+    except_init();
     logMsg(BP_INFO_LOG "This is Better Pushback (MOD) -" BP_PLUGIN_VERSION " libacfutils-%s - for X-Plane 11/12",
            libacfutils_version);
 
@@ -1350,6 +1353,7 @@ XPluginStop(void)
         reload_floop_ID = NULL;
     }
     logMsg(BP_INFO_LOG "Unloading BetterPushBack");
+    except_fini();
 }
 
 /*
