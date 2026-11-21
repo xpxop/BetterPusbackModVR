@@ -78,6 +78,89 @@ CLEAR wing-walker sequence when the global **Display marshaller** preference is
 enabled. The marshaller faces the aircraft and is anchored to his initial world
 position so early aircraft movement cannot make him follow the aircraft.
 
+## What's new in v1.16-vr.1: VR map planner and stand procedures
+
+### Plan pushbacks in VR
+
+The classic planner moves the X-Plane camera to an overhead view and needs a
+mouse and keyboard, so it cannot be used with a VR headset. This release adds a
+**map window planner** that X-Plane places in the cockpit like any other plugin
+window, so the whole pushback can be planned and executed in VR.
+
+- The map is drawn from the active airport's `apt.dat` (custom scenery in
+  `scenery_packs.ini` order first, then the global airports): pavement, painted
+  taxi lines, runways and stands. Airports without painted lines show their
+  taxi routing network instead.
+- Your aircraft is white, the end of the committed route green, and the target
+  of the next segment amber (red when the aircraft cannot reach it).
+- Click where the next segment should end, adjust the heading with the ±5/±15
+  buttons, **Tail left 90** / **Tail right 90** or the compass dial, then
+  **Add segment**. **Undo**, **Clear**, **Accept route**, **Connect tug first**
+  and **Cancel** work as in the overhead planner.
+- **Snap to taxi lines** aligns the target with the nearest yellow line. Drag
+  to pan, use the mouse wheel or **Zoom +/-** to zoom, **Center** and
+  **Heading up** to follow the aircraft.
+- Saved-route choices for the current stand appear as buttons on the map.
+
+**Preferences > Pushback planner view** selects the planner:
+
+| Setting | Planner |
+| --- | --- |
+| Map window in VR (default) | Map window in VR, overhead camera on a monitor |
+| Always map window | Map window everywhere |
+| Always top-down camera | The classic overhead planner |
+
+### Stand default procedures
+
+Each stand can have **default pushback procedures** that work for every
+aircraft, for example "push back 20 m, turn until the tail points east, push
+back 10 m". BetterPushback turns the steps into a route for the current
+aircraft with the normal planner and widens turns automatically when the
+aircraft cannot turn as tightly as written.
+
+- The map planner lists the procedures for the stand you are parked at. Click
+  one to load it, then review, edit or accept it.
+- **Save as stand default** stores the current route as your own default in
+  `Output/preferences/BetterPushback_procedures/<ICAO>.txt`. Your defaults are
+  listed first.
+- Procedures transcribed from official sources (AIP AD 2.20, apron or ground
+  handling manuals) go into
+  `plugins/BetterPushback/data/pushback_procedures/<ICAO>.txt`. The format is
+  described in `README.txt` in that folder, with examples in `EXAMPLE.txt`.
+- **Preferences > Auto-load stand default procedure** loads the first matching
+  procedure when the map planner opens.
+
+### Crash reports
+
+The libacfutils crash handler is now enabled. If X-Plane crashes inside the
+plugin, a backtrace is written to `Log.txt`; please include it when reporting
+a problem.
+
+### How it works
+
+The map window drives the same route planner and solver as the overhead
+camera planner, so routes, tug behaviour and saved-route slots are identical in
+both. Only the input and drawing differ:
+
+- `src/planner_api.h` is the planner interface both UIs use (predict, commit,
+  undo, accept, cancel, saved-route prompt). It is implemented in `bp_cam.c`,
+  which skips the camera, the full-screen input window and the key handling
+  when the map planner is active.
+- `src/airport_map.c` reads `apt.dat` and `scenery_packs.ini` on a background
+  thread and turns the airport layout into map geometry. It has no X-Plane
+  dependency and is covered by unit tests.
+- `src/planner_map_ui.cpp` is the ImGui window (VR-capable floating window),
+  with map drawing, pan/zoom, click-to-target and snapping to taxi lines.
+- `src/pushback_procedures.c` parses the per-airport procedure files, matches
+  them to the current stand and converts their steps into planner poses.
+
+Full instructions are in the [user guide](USER_GUIDE.md) under *Plan in the
+map window (VR)* and *Stand default procedures*.
+
+> The VR map planner, the stand default procedures and this section were
+> co-authored with [Claude Code](https://claude.com/claude-code) (Anthropic's
+> AI coding assistant), and tested in X-Plane 12 by the fork maintainer.
+
 ### About this Fork and Copyright
 
 Better Pushback is developed by "Saso Kiselkov". So if you see this project or else, just contact me.
