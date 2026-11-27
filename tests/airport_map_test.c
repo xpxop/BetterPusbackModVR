@@ -129,6 +129,85 @@ test_concave_pavement(void)
     airport_map_free(&map);
 }
 
+static void
+test_line_gaps_and_types(void)
+{
+    /*
+     * The line type of a node applies to the segment starting there; a node
+     * without a type starts an unpainted gap. Here: yellow A-B, gap B-C,
+     * yellow C-D, white D-E (type change), and a lights-only node E (101)
+     * whose segment E-F is not painted either.
+     */
+    FILE *fp = tmpfile();
+    airport_map_t map;
+    size_t yellow = 0, white = 0;
+
+    assert(fp != NULL);
+    fputs("1 0 0 0 XG Gaps\n120 test\n"
+        "111 50.000 8.000 1\n"     /* A */
+        "111 50.000 8.001\n"       /* B: no type -> gap B-C */
+        "111 50.000 8.002 1 101\n" /* C */
+        "111 50.000 8.003 20\n"    /* D: white */
+        "111 50.000 8.004 101\n"   /* E: lights only */
+        "115 50.000 8.005\n", fp); /* F */
+    rewind(fp);
+    airport_map_init(&map);
+    assert(airport_map_parse_stream(fp, "XG", &map));
+    fclose(fp);
+    for (size_t i = 0; i < map.n_lines; i++) {
+        const airport_map_line_t *l = &map.lines[i];
+
+        assert(l->count == 2);
+        assert(!l->closed);
+        if (l->kind == AIRPORT_MAP_LINE_YELLOW)
+            yellow++;
+        else if (l->kind == AIRPORT_MAP_LINE_WHITE)
+            white++;
+    }
+    assert(map.n_lines == 3);
+    assert(yellow == 2 && white == 1);
+    /* no line may span the gap B-C (~72 m at 50N): each one is ~72 m */
+    for (size_t i = 0; i < map.n_lines; i++) {
+        const airport_map_pt_t *a = &map.pts[map.lines[i].first];
+        assert(fabs((a[1].x - a[0].x) - 71.6) < 1.0);
+    }
+    airport_map_free(&map);
+}
+
+static void
+test_offset_lanes_and_labels(void)
+{
+    FILE *fp = tmpfile();
+    airport_map_t map;
+    size_t orange = 0, blue = 0;
+
+    assert(fp != NULL);
+    fputs("1 0 0 0 XO Lanes\n"
+        "120 lane o\n111 50.000 8.000 90\n115 50.000 8.002\n"
+        "120 lane b\n111 50.001 8.000 91 101\n115 50.001 8.002\n"
+        "1201 50.000 8.000 both 0 a\n1201 50.000 8.003 both 1 b\n"
+        "1201 50.000 8.0032 both 2 c\n"
+        "1202 0 1 twoway taxiway Z1\n"     /* ~215 m: labelled */
+        "1202 1 2 twoway taxiway Z1\n"     /* close + short: skipped */
+        "1202 0 2 twoway runway 09/27\n", fp);  /* runway: ignored */
+    rewind(fp);
+    airport_map_init(&map);
+    assert(airport_map_parse_stream(fp, "XO", &map));
+    fclose(fp);
+    for (size_t i = 0; i < map.n_lines; i++) {
+        orange += map.lines[i].kind == AIRPORT_MAP_LINE_ORANGE;
+        blue += map.lines[i].kind == AIRPORT_MAP_LINE_BLUE;
+        /* painted lines exist: no taxi route lines */
+        assert(map.lines[i].kind != AIRPORT_MAP_LINE_TAXI_ROUTE);
+    }
+    assert(orange == 1 && blue == 1);
+    /* labels come from the taxi network even when painted lines exist */
+    assert(map.n_labels == 1);
+    assert(strcmp(map.labels[0].name, "Z1") == 0);
+    assert(fabs(map.labels[0].pos.x - 107.5) < 2.0);
+    airport_map_free(&map);
+}
+
 int
 main(int argc, char **argv)
 {
@@ -137,6 +216,8 @@ main(int argc, char **argv)
     test_missing_airport(argv[1]);
     test_projection();
     test_concave_pavement();
+    test_line_gaps_and_types();
+    test_offset_lanes_and_labels();
     printf("airport_map tests passed\n");
     return 0;
 }

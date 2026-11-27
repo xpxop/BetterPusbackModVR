@@ -58,6 +58,10 @@ const ImU32 COL_RWY_TEXT = IM_COL32(235, 235, 235, 255);
 const ImU32 COL_YELLOW = IM_COL32(236, 196, 40, 255);
 const ImU32 COL_WHITE = IM_COL32(225, 225, 225, 200);
 const ImU32 COL_OTHER = IM_COL32(170, 170, 170, 160);
+const ImU32 COL_ORANGE = IM_COL32(255, 140, 20, 255);
+const ImU32 COL_BLUE = IM_COL32(70, 150, 255, 255);
+const ImU32 COL_TWY_TEXT = IM_COL32(20, 20, 20, 255);
+const ImU32 COL_TWY_LABEL = IM_COL32(236, 196, 40, 230);
 const ImU32 COL_TAXI_ROUTE = IM_COL32(236, 196, 40, 150);
 const ImU32 COL_STAND = IM_COL32(120, 200, 255, 255);
 const ImU32 COL_STAND_TEXT = IM_COL32(190, 225, 255, 255);
@@ -259,6 +263,8 @@ loader_poll()
             xform_pt(t, &m->rwy_ends[i].pos.x, &m->rwy_ends[i].pos.y);
         for (size_t i = 0; i < m->n_stands; i++)
             xform_pt(t, &m->stands[i].x, &m->stands[i].y);
+        for (size_t i = 0; i < m->n_labels; i++)
+            xform_pt(t, &m->labels[i].pos.x, &m->labels[i].pos.y);
         for (size_t i = 0; i < m->n_pts; i++) {
             minx = fminf(minx, m->pts[i].x); maxx = fmaxf(maxx, m->pts[i].x);
             miny = fminf(miny, m->pts[i].y); maxy = fmaxf(maxy, m->pts[i].y);
@@ -950,6 +956,8 @@ PlannerMapWindow::snap_heading(vect2_t p, double hdg, bool *snapped) const
         const airport_map_line_t *l = &map->lines[li];
 
         if (l->kind != AIRPORT_MAP_LINE_YELLOW &&
+            l->kind != AIRPORT_MAP_LINE_ORANGE &&
+            l->kind != AIRPORT_MAP_LINE_BLUE &&
             l->kind != AIRPORT_MAP_LINE_TAXI_ROUTE)
             continue;
         for (uint32_t i = 0; i + 1 < l->count; i++) {
@@ -964,9 +972,13 @@ PlannerMapWindow::snap_heading(vect2_t p, double hdg, bool *snapped) const
             double qx = a.x + t * vx - p.x, qy = a.y + t * vy - p.y;
             double d = sqrt(qx * qx + qy * qy);
             if (d < best) {
-                double lh = RAD2DEG(atan2(vx, vy));
+                /*
+                 * atan2() yields -180..180, but libacfutils' rel_hdg()
+                 * asserts (and kills the sim) on anything outside 0..360.
+                 */
+                double lh = pb_proc_normalize_hdg(RAD2DEG(atan2(vx, vy)));
                 /* pick the line direction closest to the current heading */
-                if (fabs(rel_hdg(hdg, lh)) > 90)
+                if (fabs(rel_hdg(pb_proc_normalize_hdg(hdg), lh)) > 90)
                     lh += 180;
                 best = d;
                 best_hdg = pb_proc_normalize_hdg(lh);
@@ -1074,6 +1086,8 @@ PlannerMapWindow::draw_airport(ImDrawList *dl)
         switch (l->kind) {
         case AIRPORT_MAP_LINE_YELLOW: col = COL_YELLOW; w = 1.6f; break;
         case AIRPORT_MAP_LINE_WHITE: col = COL_WHITE; break;
+        case AIRPORT_MAP_LINE_ORANGE: col = COL_ORANGE; w = 1.6f; break;
+        case AIRPORT_MAP_LINE_BLUE: col = COL_BLUE; w = 1.6f; break;
         case AIRPORT_MAP_LINE_TAXI_ROUTE: col = COL_TAXI_ROUTE; w = 1.4f;
             break;
         case AIRPORT_MAP_LINE_PAVEMENT:
@@ -1103,6 +1117,22 @@ PlannerMapWindow::draw_airport(ImDrawList *dl)
             break;
         dl->AddPolyline(pts.data(), (int)pts.size(), col,
             l->closed ? ImDrawFlags_Closed : ImDrawFlags_None, w);
+    }
+
+    /* taxiway names (from the taxi routing network) */
+    if (view.show_labels && view.scale >= 0.35) {
+        for (size_t i = 0; i < m->n_labels && vtx_budget_ok(dl); i++) {
+            const airport_map_label_t *lb = &m->labels[i];
+            ImVec2 s = w2s(lb->pos.x, lb->pos.y);
+            if (s.x < c_min.x || s.x > c_max.x || s.y < c_min.y ||
+                s.y > c_max.y)
+                continue;
+            ImVec2 ts = ImGui::CalcTextSize(lb->name);
+            ImVec2 p0(s.x - ts.x / 2 - 3, s.y - ts.y / 2 - 1);
+            ImVec2 p1(s.x + ts.x / 2 + 3, s.y + ts.y / 2 + 1);
+            dl->AddRectFilled(p0, p1, COL_TWY_LABEL, 3.0f);
+            dl->AddText(ImVec2(p0.x + 3, p0.y + 1), COL_TWY_TEXT, lb->name);
+        }
     }
 
     /* runway designators */

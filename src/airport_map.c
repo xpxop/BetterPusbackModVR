@@ -16,6 +16,8 @@
 #define AMAP_BEZIER_STEPS 8
 #define AMAP_LINE_BUF 2048
 #define AMAP_MAX_TOKENS 24
+#define LABEL_MIN_EDGE 30.0     /* ignore shorter taxi edges for labels (m) */
+#define LABEL_SPACING 400.0     /* min distance between equal labels (m) */
 
 typedef struct {
     double lat, lon;
@@ -37,14 +39,16 @@ typedef struct {
 
 typedef struct {
     long a, b;
+    char name[16];
 } taxi_edge_t;
 
 typedef struct {
     airport_map_t *map;
     chain_kind_t chain;
     int ring_index;             /* 0 = outer pavement ring, >0 = hole */
-    uint8_t line_kind;
-    bool line_kind_set;
+    uint8_t line_kind;          /* kind of the painted run in `ring` */
+    bool prev_painted;          /* segment starting at `prev` is painted */
+    uint8_t prev_kind;
     bool have_first;
     amap_node_t first;
     bool have_prev;
@@ -175,6 +179,7 @@ airport_map_free(airport_map_t *map)
     free(map->rwy_tris);
     free(map->rwy_ends);
     free(map->stands);
+    free(map->labels);
     airport_map_init(map);
 }
 
@@ -410,7 +415,56 @@ line_kind_for_type(int type)
         return AIRPORT_MAP_LINE_YELLOW;
     if ((type >= 20 && type <= 22) || (type >= 70 && type <= 72))
         return AIRPORT_MAP_LINE_WHITE;
+    /*
+     * XP12 offset taxi lanes. Not in the published spec; the colours are
+     * taken from the default ENGM scenery, where type 90 lines are named
+     * "Taxi_L_Orange_*" and type 91 lines "Taxi_L_Blue_*".
+     */
+    if (type == 90)
+        return AIRPORT_MAP_LINE_ORANGE;
+    if (type == 91)
+        return AIRPORT_MAP_LINE_BLUE;
     return AIRPORT_MAP_LINE_OTHER;
+}
+
+/*
+ * Emits the painted run collected in ctx->ring (if any) as one line. In a
+ * 120 chain the line type of a node applies to the segment that starts at
+ * that node; a node without a type starts an unpainted gap. Every run of
+ * equally painted segments therefore becomes its own polyline.
+ */
+static bool
+flush_line_run(parse_ctx_t *ctx)
+{
+    bool ok = true;
+
+    if (ctx->n_ring >= 2) {
+        ok = add_line(ctx->map, ctx->ring, ctx->n_ring, ctx->line_kind,
+            false);
+        ctx->have_painted_lines = true;
+    }
+    ctx->n_ring = 0;
+    return ok;
+}
+
+/* Adds the edge prev -> node of a 120 chain, styled by `prev`. */
+static bool
+line_edge(parse_ctx_t *ctx, const amap_node_t *a, const amap_node_t *b,
+    bool b_painted, uint8_t b_kind)
+{
+    if (ctx->prev_painted) {
+        if (ctx->n_ring == 0) {
+            ctx->line_kind = ctx->prev_kind;
+            if (!ring_push(ctx, project(ctx->map, a->lat, a->lon)))
+                return false;
+        }
+        if (!chain_edge(ctx, a, b))
+            return false;
+    }
+    /* a gap or a different line type ends the current run */
+    if (!b_painted || b_kind != ctx->line_kind)
+        return flush_line_run(ctx);
+    return true;
 }
 
 static bool
@@ -434,9 +488,8 @@ finish_ring(parse_ctx_t *ctx, bool closed)
         if (ok)
             ok = add_line(map, ctx->ring, ctx->n_ring,
                 AIRPORT_MAP_LINE_PAVEMENT, true);
-    } else if (ctx->chain == CHAIN_LINE && ctx->line_kind_set) {
-        ok = add_line(map, ctx->ring, ctx->n_ring, ctx->line_kind, closed);
-        ctx->have_painted_lines = true;
+    } else if (ctx->chain == CHAIN_LINE) {
+        ok = flush_line_run(ctx);
     }
     ctx->n_ring = 0;
     ctx->have_first = false;
@@ -453,8 +506,9 @@ begin_chain(parse_ctx_t *ctx, chain_kind_t kind)
     ctx->n_ring = 0;
     ctx->have_first = false;
     ctx->have_prev = false;
-    ctx->line_kind_set = false;
     ctx->line_kind = AIRPORT_MAP_LINE_OTHER;
+    ctx->prev_painted = false;
+    ctx->prev_kind = AIRPORT_MAP_LINE_OTHER;
 }
 
 static bool
@@ -480,13 +534,39 @@ chain_node(parse_ctx_t *ctx, int code, char *tok[], int ntok)
     } else {
         type_idx = 3;
     }
-    if (ctx->chain == CHAIN_LINE && !ctx->line_kind_set &&
-        ntok > type_idx) {
-        int type = atoi(tok[type_idx]);
-        if (type > 0 && type < 100) {
-            ctx->line_kind = line_kind_for_type(type);
-            ctx->line_kind_set = true;
+    if (ctx->chain == CHAIN_LINE) {
+        bool painted = false;
+        uint8_t kind = AIRPORT_MAP_LINE_OTHER;
+
+        /* attributes: painted line type (< 100) and/or lighting (>= 100) */
+        for (int i = type_idx; i < ntok; i++) {
+            int type = atoi(tok[i]);
+            if (type > 0 && type < 100) {
+                painted = true;
+                kind = line_kind_for_type(type);
+                break;
+            }
         }
+        if (ctx->have_prev && !line_edge(ctx, &ctx->prev, &node, painted,
+            kind))
+            return false;
+        if (!ctx->have_prev) {
+            ctx->first = node;
+            ctx->have_first = true;
+        }
+        ctx->prev = node;
+        ctx->have_prev = true;
+        ctx->prev_painted = painted;
+        ctx->prev_kind = kind;
+        if (code == 113 || code == 114) {
+            /* closing segment back to the first node, styled by this node */
+            if (!line_edge(ctx, &ctx->prev, &ctx->first, false, kind))
+                return false;
+            return finish_ring(ctx, true);
+        }
+        if (code == 115 || code == 116)
+            return finish_ring(ctx, false);
+        return true;
     }
 
     if (!ctx->have_prev) {
@@ -582,7 +662,8 @@ parse_ramp_start(parse_ctx_t *ctx, char *tok[], const char *rest[],
     memset(s, 0, sizeof(*s));
     s->x = p.x;
     s->y = p.y;
-    s->hdg = (float)atof(tok[3]);
+    /* apt.dat allows negative ramp headings (e.g. -163.9 at ENGM) */
+    s->hdg = (float)fmod(fmod(atof(tok[3]), 360.0) + 360.0, 360.0);
     if (ntok >= 7)
         copy_str(s->name, sizeof(s->name), rest[6]);
     extend_bounds(map, p);
@@ -616,6 +697,9 @@ parse_taxi_edge(parse_ctx_t *ctx, char *tok[], int ntok)
         return false;
     ctx->tedges[ctx->n_tedges].a = atol(tok[1]);
     ctx->tedges[ctx->n_tedges].b = atol(tok[2]);
+    /* 1202 <node> <node> <oneway|twoway> <taxiway|runway> <name> */
+    copy_str(ctx->tedges[ctx->n_tedges].name,
+        sizeof(ctx->tedges[ctx->n_tedges].name), ntok >= 6 ? tok[5] : "");
     ctx->n_tedges++;
     return true;
 }
@@ -627,12 +711,91 @@ tnode_cmp(const void *a, const void *b)
     return (x > y) - (x < y);
 }
 
+typedef struct {
+    size_t edge;
+    double len;
+    airport_map_pt_t mid;
+} label_cand_t;
+
+static int
+label_cand_cmp(const void *a, const void *b)
+{
+    double la = ((const label_cand_t *)a)->len;
+    double lb = ((const label_cand_t *)b)->len;
+    return (la < lb) - (la > lb);   /* longest first */
+}
+
+/*
+ * Places taxiway name labels: one at the middle of the longest named edges,
+ * skipping a name when the same name is already labelled nearby.
+ */
+static bool
+add_taxi_labels(parse_ctx_t *ctx)
+{
+    airport_map_t *map = ctx->map;
+    label_cand_t *cand;
+    size_t n_cand = 0;
+    bool ok = true;
+
+    if (ctx->n_tedges == 0)
+        return true;
+    cand = calloc(ctx->n_tedges, sizeof(*cand));
+    if (cand == NULL)
+        return false;
+    for (size_t i = 0; i < ctx->n_tedges; i++) {
+        taxi_node_t ka, kb, *a, *b;
+
+        if (ctx->tedges[i].name[0] == '\0')
+            continue;
+        ka.id = ctx->tedges[i].a;
+        kb.id = ctx->tedges[i].b;
+        a = bsearch(&ka, ctx->tnodes, ctx->n_tnodes, sizeof(ka), tnode_cmp);
+        b = bsearch(&kb, ctx->tnodes, ctx->n_tnodes, sizeof(kb), tnode_cmp);
+        if (a == NULL || b == NULL)
+            continue;
+        cand[n_cand].edge = i;
+        cand[n_cand].len = hypot(b->pt.x - a->pt.x, b->pt.y - a->pt.y);
+        cand[n_cand].mid.x = (a->pt.x + b->pt.x) / 2;
+        cand[n_cand].mid.y = (a->pt.y + b->pt.y) / 2;
+        if (cand[n_cand].len >= LABEL_MIN_EDGE)
+            n_cand++;
+    }
+    qsort(cand, n_cand, sizeof(*cand), label_cand_cmp);
+    for (size_t i = 0; i < n_cand && ok; i++) {
+        const char *name = ctx->tedges[cand[i].edge].name;
+        bool near = false;
+
+        for (size_t j = 0; j < map->n_labels && !near; j++) {
+            if (strcmp(map->labels[j].name, name) == 0 &&
+                hypot(map->labels[j].pos.x - cand[i].mid.x,
+                map->labels[j].pos.y - cand[i].mid.y) < LABEL_SPACING)
+                near = true;
+        }
+        if (near)
+            continue;
+        if (!GROW(map->labels, map->n_labels, map->cap_labels, 1)) {
+            ok = false;
+            break;
+        }
+        copy_str(map->labels[map->n_labels].name,
+            sizeof(map->labels[map->n_labels].name), name);
+        map->labels[map->n_labels].pos = cand[i].mid;
+        map->n_labels++;
+    }
+    free(cand);
+    return ok;
+}
+
 static bool
 finish_taxi_network(parse_ctx_t *ctx)
 {
-    if (ctx->have_painted_lines || ctx->n_tedges == 0)
+    if (ctx->n_tedges == 0)
         return true;
     qsort(ctx->tnodes, ctx->n_tnodes, sizeof(*ctx->tnodes), tnode_cmp);
+    if (!add_taxi_labels(ctx))
+        return false;
+    if (ctx->have_painted_lines)
+        return true;
     for (size_t i = 0; i < ctx->n_tedges; i++) {
         taxi_node_t ka, kb, *a, *b;
         airport_map_pt_t seg[2];

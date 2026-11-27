@@ -12,7 +12,8 @@
  *   110      pavement (taxiway/apron) polygons incl. holes, with Beziers
  *   120      linear features (painted lines), with Beziers
  *   111-116  nodes for 110/120/130 chains
- *   1201/1202 taxi routing network (drawn when no painted lines exist)
+ *   1201/1202 taxi routing network (drawn when no painted lines exist;
+ *            its taxiway names are always used for map labels)
  *   1300     ramp starts (stands/gates)
  */
 
@@ -38,6 +39,8 @@ typedef enum {
     AIRPORT_MAP_LINE_OTHER,       /* any other painted line type */
     AIRPORT_MAP_LINE_TAXI_ROUTE,  /* 1202 taxi routing edge */
     AIRPORT_MAP_LINE_PAVEMENT,    /* pavement outline */
+    AIRPORT_MAP_LINE_ORANGE,      /* type 90: orange offset taxi lane */
+    AIRPORT_MAP_LINE_BLUE,        /* type 91: blue offset taxi lane */
     AIRPORT_MAP_LINE_KIND_COUNT
 } airport_map_line_kind_t;
 
@@ -64,6 +67,12 @@ typedef struct {
     char name[8];
     airport_map_pt_t pos;   /* runway end threshold */
 } airport_map_rwy_end_t;
+
+/* Taxiway name placed along the taxi routing network. */
+typedef struct {
+    char name[16];
+    airport_map_pt_t pos;
+} airport_map_label_t;
 
 typedef struct {
     bool found;
@@ -94,6 +103,9 @@ typedef struct {
 
     airport_map_stand_t *stands;
     size_t n_stands, cap_stands;
+
+    airport_map_label_t *labels;
+    size_t n_labels, cap_labels;
 } airport_map_t;
 
 void airport_map_init(airport_map_t *map);
