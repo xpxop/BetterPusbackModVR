@@ -9,9 +9,11 @@
 # - Stand positions from the AIP stand coordinates; stand headings from the
 #   lead-in lines on the parking/docking charts (or the heading of the stand
 #   row where no lead-in line could be read).
-# - Release point positions and headings from the release point symbols on
-#   the charts (symbol base = nosewheel, tip = facing direction), georeferenced
-#   with the stand coordinates (about 1-5 m accuracy).
+# - Release point positions from the release point symbols on the charts
+#   (symbol base = nosewheel), georeferenced with the stand coordinates (about
+#   1-5 m accuracy). Headings from the taxiway centreline lights drawn through
+#   the release point (the symbols themselves are only accurate to ~5 deg);
+#   symbol direction where no straight light row could be fitted.
 # - Distances are for the aircraft reference point, assuming it lies 13 m
 #   behind the nosewheel (25 m for code D/E, 30 m for code F). Larger or
 #   smaller aircraft end a few metres off; adjust in the planner if needed.
@@ -25,9 +27,9 @@
 stand 9
 name RP 54 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 31
-turn face 290
-forward 66
+back 26
+turn face 286
+forward 68
 end
 
 stand 10
@@ -39,9 +41,9 @@ end
 stand 11
 name RP 54 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 34
-turn face 290
-forward 111
+back 26
+turn face 286
+forward 112
 end
 
 stand 12
@@ -53,16 +55,16 @@ end
 stand 13
 name RP 54 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 38
-turn face 290
-forward 154
+back 28
+turn face 286
+forward 156
 end
 
 stand 13
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 71
-turn face 108
+turn face 105
 end
 
 stand 14
@@ -74,8 +76,8 @@ end
 stand 15
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 34
-turn face 108 radius 68
+back 31
+turn face 105 radius 72
 end
 
 stand 16
@@ -119,51 +121,51 @@ name RP 30 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 15
 turn face 177
-back 243
-turn face 198
-back 6
+back 246
+turn face 196
+back 5
 end
 
 stand 28
 name RP 40 facing southeast (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 31
-turn face 143
-back 107
+back 43
+turn face 138
+back 96
 end
 
 stand 28
 name RP 41 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 77
-turn face 111
-back 191
+back 93
+turn face 106
+back 184
 end
 
 stand 36
 name RP 20 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 159
-turn face 195
+turn face 196
 back 111
 end
 
 stand 36
 name RP 15 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 107
-turn face 285
-back 176
+back 109
+turn face 286
+back 175
 end
 
 stand 36
 name RP 14 facing southwest (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 15
-turn face 237
-back 24
-turn face 240
-back 95
+turn face 239
+back 109
+turn face 243
+back 9
 end
 
 stand 38
@@ -171,25 +173,25 @@ name RP 20 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 15
 turn face 206
-back 246
-turn face 195
-back 8
+back 254
+turn face 196
+back 1
 end
 
 stand 38
 name RP 15 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 89
-turn face 285
+back 91
+turn face 286
 back 183
 end
 
 stand 38
 name RP 14 facing southwest (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 59
-turn face 240
-back 54
+back 63
+turn face 243
+back 50
 end
 
 stand 39
@@ -204,17 +206,17 @@ name RP 20 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 15
 turn face 191
-back 220
-turn face 195
-back 18
+back 205
+turn face 196
+back 32
 end
 
 stand 40
 name RP 15 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 68
-turn face 285
-back 121
+back 69
+turn face 286
+back 120
 end
 
 stand 41
@@ -228,16 +230,16 @@ end
 stand 41
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 34
-turn face 105
+back 29
+turn face 106
 forward 191
 end
 
 stand 41
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 36
-turn face 105
+back 29
+turn face 106
 forward 318
 end
 
@@ -259,48 +261,48 @@ end
 stand 43
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 33
-turn face 105
-forward 147
+back 29
+turn face 106
+forward 148
 end
 
 stand 43
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 35
-turn face 105
-forward 274
+back 29
+turn face 106
+forward 275
 end
 
 stand 44
 name RP 15 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 37
-turn face 285 radius 84
+turn face 286 radius 83
 end
 
 stand 44
 name RP 17 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 88
-turn face 285
+back 91
+turn face 286
 back 220
 end
 
 stand 44
 name RP 16 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 87
-turn face 105
+back 91
+turn face 106
 forward 158
 end
 
 stand 44
 name RP 18 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 84
-turn face 105
-forward 326
+back 91
+turn face 106
+forward 325
 end
 
 stand 45
@@ -314,16 +316,16 @@ end
 stand 45
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 32
-turn face 105
+back 29
+turn face 106
 forward 104
 end
 
 stand 45
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 34
-turn face 105
+back 29
+turn face 106
 forward 231
 end
 
@@ -331,62 +333,62 @@ stand 46
 name RP 15 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 87
-turn face 285 radius 35
+turn face 286 radius 34
 end
 
 stand 46
 name RP 17 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 89
-turn face 285
-back 171
+back 92
+turn face 286
+back 170
 end
 
 stand 46
 name RP 16 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 89
-turn face 105
-forward 109
+back 92
+turn face 106
+forward 108
 end
 
 stand 46
 name RP 18 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 86
-turn face 105
+back 92
+turn face 106
 forward 276
 end
 
 stand 46R
 name RP 15 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 87
-turn face 285 radius 37
+back 86
+turn face 286 radius 36
 end
 
 stand 46R
 name RP 17 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 91
-turn face 285
-back 173
+back 93
+turn face 286
+back 172
 end
 
 stand 46R
 name RP 16 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 90
-turn face 105
+back 94
+turn face 106
 forward 111
 end
 
 stand 46R
 name RP 18 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 88
-turn face 105
-forward 279
+back 94
+turn face 106
+forward 278
 end
 
 stand 47
@@ -399,64 +401,64 @@ end
 stand 47
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 31
-turn face 105
-forward 60
+back 29
+turn face 106
+forward 61
 end
 
 stand 47
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 33
-turn face 105
-forward 187
+back 29
+turn face 106
+forward 188
 end
 
 stand 48
 name RP 15 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 92
-turn face 285
-forward 50
+back 90
+turn face 286
+forward 51
 end
 
 stand 48
 name RP 17 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 89
-turn face 285
+back 91
+turn face 286
 back 115
 end
 
 stand 48
 name RP 16 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 89
-turn face 105
+back 91
+turn face 106
 forward 53
 end
 
 stand 48
 name RP 18 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 86
-turn face 105
+back 91
+turn face 106
 forward 221
 end
 
 stand 49
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 34
-turn face 105
+back 32
+turn face 106
 forward 14
 end
 
 stand 49
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 36
-turn face 105
+back 32
+turn face 106
 forward 141
 end
 
@@ -471,8 +473,8 @@ end
 stand 50
 name RP 15 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 87
-turn face 285
+back 84
+turn face 286
 forward 108
 end
 
@@ -480,36 +482,36 @@ stand 50
 name RP 17 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 26
-turn face 285 radius 88
+turn face 286 radius 86
 end
 
 stand 50
 name RP 16 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 79
-turn face 105 radius 34
+back 80
+turn face 106 radius 35
 end
 
 stand 50
 name RP 18 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 80
-turn face 105
-forward 164
+back 85
+turn face 106
+forward 163
 end
 
 stand 51
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 39
-turn face 105
-forward 53
+back 37
+turn face 106
+forward 54
 end
 
 stand 51
 name RP 8 facing on TWY L CENTER (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 52
+back 51
 turn face 105
 forward 11
 end
@@ -517,39 +519,39 @@ end
 stand 52
 name RP 16 facing east (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 31
-turn face 105 radius 64
+back 33
+turn face 106 radius 65
 end
 
 stand 52
 name RP 18 facing east (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 63
-turn face 105
+back 67
+turn face 106
 forward 133
 end
 
 stand 52
 name RP 19 facing east (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 62
-turn face 105
-forward 191
+back 69
+turn face 107
+forward 190
 end
 
 stand 52
 name RP 17 facing west (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 14
-turn face 285 radius 82
+back 15
+turn face 286 radius 80
 end
 
 stand 52
 name RP 19 facing east (code F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 57
-turn face 105
-forward 186
+back 64
+turn face 107
+forward 185
 end
 
 stand 53
@@ -563,15 +565,15 @@ end
 stand 53
 name RP 7 facing on TWY L CENTER (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 69
-turn face 105
-forward 12
+back 66
+turn face 106
+forward 13
 end
 
 stand 53
 name RP 8 facing on TWY L CENTER (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 67
+back 65
 turn face 105
 back 98
 end
@@ -579,63 +581,63 @@ end
 stand 54
 name RP 16 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 4
-turn face 105 radius 73
+back 5
+turn face 106 radius 74
 end
 
 stand 54
 name RP 17 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 28
-turn face 285 radius 49
+turn face 286 radius 48
 end
 
 stand 56
 name RP 17 facing west (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 80
-turn face 285
-forward 42
+back 78
+turn face 286
+forward 43
 end
 
 stand 56
 name RP 18 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 76
-turn face 105
+back 79
+turn face 106
 forward 63
 end
 
 stand 56
 name RP 19 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 75
-turn face 105
-forward 121
+back 80
+turn face 107
+forward 120
 end
 
 stand 58
 name RP 19 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 76
-turn face 105
-forward 41
+back 79
+turn face 107
+forward 40
 end
 
 stand 60
 name RP 30 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 96
-turn face 198
+back 92
+turn face 196
 back 178
 end
 
 stand 60
 name RP 40 facing southeast (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 53
-turn face 143
-back 86
+back 40
+turn face 138
+back 99
 end
 
 stand 60
@@ -643,32 +645,35 @@ name RP 41 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 15
 turn face 120
-back 243
-turn face 111
-back 7
+back 241
+turn face 106
+back 6
 end
 
 stand 61
 name RP 20 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 103
-turn face 195
+back 102
+turn face 196
 back 144
 end
 
 stand 61
 name RP 15 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 133
-turn face 285
-back 146
+back 136
+turn face 286
+back 142
 end
 
 stand 61
 name RP 14 facing southwest (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 97
-turn face 240 radius 74
+back 15
+turn face 261
+back 95
+turn face 243
+back 5
 end
 
 stand 64
@@ -710,17 +715,17 @@ end
 stand 76
 name RP 30 facing south (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 78
-turn face 198
-forward 5
+back 79
+turn face 196
+forward 4
 end
 
 stand 76
 name RP 31 facing north (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 82
-turn face 018
-forward 131
+back 79
+turn face 016
+forward 132
 end
 
 stand 76
@@ -738,40 +743,40 @@ end
 stand 79
 name RP 20 facing south (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 60
-turn face 195
+back 62
+turn face 196
 forward 6
 end
 
 stand 79
 name RP 21 facing north (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 65
-turn face 015
+back 60
+turn face 016
 forward 199
 end
 
 stand 80
 name RP 30 facing south (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 76
-turn face 198
-forward 90
+back 79
+turn face 196
+forward 89
 end
 
 stand 80
 name RP 31 facing north (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 80
-turn face 018
+back 79
+turn face 016
 forward 47
 end
 
 stand 80
 name RP 31 facing north (code F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 75
-turn face 018
+back 74
+turn face 016
 forward 42
 end
 
@@ -796,17 +801,17 @@ end
 stand 87
 name RP 20 facing south (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 59
-turn face 195
+back 62
+turn face 196
 forward 100
 end
 
 stand 87
 name RP 21 facing north (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 63
-turn face 015
-forward 105
+back 60
+turn face 016
+forward 106
 end
 
 stand 89
@@ -818,71 +823,71 @@ end
 stand 171
 name RP 53 facing west (code C-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 64
-turn face 288
-forward 45
+back 65
+turn face 286
+forward 44
 end
 
 stand 171L
 name RP 53 facing west (code C-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 70
-turn face 288
-forward 63
+back 72
+turn face 286
+forward 62
 end
 
 stand 172
 name RP 53 facing west (code C-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 62
-turn face 288
-forward 97
+back 65
+turn face 286
+forward 96
 end
 
 stand 173
 name RP 51 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 19
-turn face 288 radius 41
+turn face 287 radius 42
 end
 
 stand 174
 name RP 51 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 29
-turn face 288
-forward 32
+back 31
+turn face 287
+forward 31
 end
 
 stand 175
 name RP 51 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 27
-turn face 288
+back 30
+turn face 287
 forward 75
 end
 
 stand 176
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 33
-turn face 108
-forward 77
+back 30
+turn face 105
+forward 79
 end
 
 stand 177
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 28
-turn face 108
-forward 34
+back 27
+turn face 105
+forward 35
 end
 
 stand 178
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 17
-turn face 108 radius 40
+back 19
+turn face 105 radius 38
 end
 
 stand 181
@@ -942,17 +947,17 @@ end
 stand 188
 name RP 7 facing east (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 58
-turn face 105
-forward 12
+back 61
+turn face 106
+forward 11
 end
 
 stand 188
 name RP 8 facing east (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 60
+back 62
 turn face 105
-back 99
+back 98
 end
 
 stand 189
@@ -973,15 +978,15 @@ stand 201L
 name RP 63 facing south (code D-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 59
-turn face 198 radius 43
+turn face 196 radius 44
 end
 
 stand 201L
 name RP 64 facing north (code D-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 71
-turn face 018
-forward 85
+back 68
+turn face 016
+forward 87
 end
 
 stand 202
@@ -999,8 +1004,8 @@ end
 stand 203L
 name RP 63 facing south (code D-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 69
-turn face 198
+back 72
+turn face 196
 forward 74
 end
 
@@ -1008,7 +1013,7 @@ stand 203L
 name RP 64 facing north (code D-F)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 67
-turn face 018 radius 31
+turn face 016 radius 30
 end
 
 stand 204
@@ -1021,114 +1026,114 @@ stand 205
 name RP 65 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 39
-turn face 198 radius 60
+turn face 196 radius 61
 end
 
 stand 205
 name RP 67 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 72
-turn face 198
-back 171
+back 68
+turn face 196
+back 172
 end
 
 stand 205
 name RP 66 facing north (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 68
-turn face 018
-forward 129
+back 63
+turn face 016
+forward 130
 end
 
 stand 206
 name RP 65 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 66
-turn face 198
-forward 31
+back 67
+turn face 196
+forward 30
 end
 
 stand 206
 name RP 67 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 70
-turn face 198
-back 112
+back 68
+turn face 196
+back 113
 end
 
 stand 206
 name RP 66 facing north (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 66
-turn face 018
-forward 70
+back 63
+turn face 016
+forward 71
 end
 
 stand 207
 name RP 65 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 64
-turn face 198
+back 67
+turn face 196
 forward 90
 end
 
 stand 207
 name RP 67 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 16
-turn face 198 radius 85
+back 14
+turn face 196 radius 87
 end
 
 stand 207
 name RP 66 facing north (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 64
-turn face 018
-forward 10
+back 63
+turn face 016
+forward 11
 end
 
 stand 208
 name RP 65 facing south (all ACFT)
-source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 68
-turn face 198
-forward 150
-end
-
-stand 208
-name RP 67 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 73
-turn face 198
-forward 7
+turn face 196
+forward 149
+end
+
+stand 208
+name RP 67 facing south (all ACFT)
+source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 74
+turn face 196
+forward 6
 end
 
 stand 208
 name RP 66 facing north (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 19
-turn face 018 radius 77
+back 21
+turn face 016 radius 75
 end
 
 stand 208R
 name RP 65 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 77
-turn face 198
-forward 127
+back 81
+turn face 196
+forward 126
 end
 
 stand 208R
 name RP 67 facing south (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 65
-turn face 198 radius 47
+back 64
+turn face 196 radius 48
 end
 
 stand 208R
 name RP 66 facing north (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
-back 51
-turn face 018 radius 55
+back 52
+turn face 016 radius 53
 end
 

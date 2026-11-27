@@ -1,0 +1,324 @@
+# ENTO - default pushback procedures (generated, do not edit by hand)
+#
+# Source: AIP Norway (Avinor eAIP), AIRAC 2026-11-26: ENTO AD 2.20 and the AD 2.24
+# charts "Aircraft Parking/Docking Chart" and "Aircraft Parking/Docking Chart - Coordinates".
+# For flight simulation only - not for real-world operations.
+#
+# - Stand positions from the published stand coordinates, stand headings from
+#   the lead-in lines on the parking/docking chart. Stands without a lead-in
+#   line or stop mark (self-manoeuvring, GA, helicopter) have no entry.
+# - Where AD 2.20 publishes no procedure, pushback is assumed straight back
+#   (the usual standard in Norway) until the main gear reaches the start of
+#   the painted taxi-out path (turn-off curves or taxilane centreline), so the
+#   aircraft can turn onto the taxilane on its own. This length is our
+#   estimate, not published (25 m minimum, capped at 60 m where the next
+#   taxilane is further away). Code C reference (main gear 13 m behind the
+#   nosewheel); other sizes end slightly different.
+# - AD 2 ENTO 2-4 table: pushback to disconnect positions (DPSN) on TWY T per
+#   stand and code letter. DPSN = blue arrow on the parking chart (notched base =
+#   nosewheel, tip = facing direction). Standard first, then alternatives.
+# - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
+#   also says pushback is straight back unless instructed otherwise.
+# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
+#   wiki (date in the name); they are not official and the AIP takes
+#   precedence where both exist.
+
+stand 1
+name Standard: to DPSN 1 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 14
+turn face 271
+back 85
+end
+
+stand 1
+name 1st alternative: to DPSN 1N (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 001
+back 39
+end
+
+stand 1
+name 2nd alternative: to DPSN 1E (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+back 38
+end
+
+stand 1
+name Standard: to DPSN 1N (code D, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 23
+turn face 001
+back 51
+end
+
+stand 2
+name Standard: to DPSN 2 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 108
+end
+
+stand 3
+name Standard: to DPSN 3 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 108
+end
+
+stand 4
+name Standard: to DPSN 4 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 109
+end
+
+stand 5
+name Standard: to DPSN 5 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 112
+end
+
+stand 5
+name 1st alternative: to DPSN 5S (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 12
+turn face 181 radius 55
+end
+
+stand 10
+name Standard: to DPSN 11 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+back 43
+end
+
+stand 10
+name 1st alternative: to DPSN 12, via long pushback (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 31
+turn face 091
+back 83
+end
+
+stand 10
+name 2nd alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 30
+turn face 091 radius 33
+end
+
+stand 10
+name 2nd alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+forward 38
+end
+
+stand 11
+name Standard: to DPSN 12 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+back 43
+end
+
+stand 11
+name 1st alternative: to DPSN 13, via long pushback (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 31
+turn face 091
+back 83
+end
+
+stand 11
+name 2nd alternative: to DPSN 11, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 30
+turn face 091 radius 33
+end
+
+stand 11
+name 2nd alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+forward 37
+end
+
+stand 11
+name 2nd alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 091
+forward 78
+end
+
+stand 12
+name Standard: to DPSN 13 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+back 42
+end
+
+stand 12
+name 1st alternative: to DPSN 14, via long pushback (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 31
+turn face 091
+back 83
+end
+
+stand 12
+name 2nd alternative: to DPSN 12, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 31
+turn face 091 radius 32
+end
+
+stand 12
+name 2nd alternative: to DPSN 11, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+forward 38
+end
+
+stand 12
+name 2nd alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 091
+forward 78
+end
+
+stand 12
+name 2nd alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 36
+turn face 091
+forward 119
+end
+
+stand 13
+name Standard: to DPSN 14 (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+back 44
+end
+
+stand 13
+name 1st alternative: to DPSN 12, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+forward 37
+end
+
+stand 13
+name 1st alternative: to DPSN 11, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 34
+turn face 091
+forward 77
+end
+
+stand 13
+name 1st alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 091
+forward 117
+end
+
+stand 13
+name 1st alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 37
+turn face 091
+forward 158
+end
+
+stand 14
+name Standard: to DPSN 14, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 27
+turn face 091 radius 33
+end
+
+stand 14
+name 1st alternative: to DPSN 12, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+forward 78
+end
+
+stand 14
+name 1st alternative: to DPSN 11, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 32
+turn face 091
+forward 118
+end
+
+stand 14
+name 1st alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 33
+turn face 091
+forward 158
+end
+
+stand 14
+name 1st alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 091
+forward 199
+end
+
+stand 15
+name Standard: to DPSN 14, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 31
+turn face 091
+forward 37
+end
+
+stand 15
+name 1st alternative: to DPSN 12, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 33
+turn face 091
+forward 118
+end
+
+stand 15
+name 1st alternative: to DPSN 11, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 33
+turn face 091
+forward 159
+end
+
+stand 15
+name 1st alternative: to DPSN 10, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 35
+turn face 091
+forward 198
+end
+
+stand 15
+name 1st alternative: to DPSN 1E, via pull forward (code C, AIP)
+source AIP Norway ENTO AD 2.20 6 + AD 2 ENTO 2-4 Push Back Procedures (AIRAC 2026-11-26)
+back 36
+turn face 091
+forward 239
+end
+

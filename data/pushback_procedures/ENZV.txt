@@ -1,0 +1,476 @@
+# ENZV - default pushback procedures (generated, do not edit by hand)
+#
+# Source: AIP Norway (Avinor eAIP), AIRAC 2026-11-26: ENZV AD 2.20 and the AD 2.24
+# charts "Aircraft Parking-Docking Chart" and "Aircraft Parking-Docking Chart - Coordinates".
+# For flight simulation only - not for real-world operations.
+#
+# - Stand positions from the published stand coordinates, stand headings from
+#   the lead-in lines on the parking/docking chart. Stands without a lead-in
+#   line or stop mark (self-manoeuvring, GA, helicopter) have no entry.
+# - Where AD 2.20 publishes no procedure, pushback is assumed straight back
+#   (the usual standard in Norway) until the main gear reaches the start of
+#   the painted taxi-out path (turn-off curves or taxilane centreline), so the
+#   aircraft can turn onto the taxilane on its own. This length is our
+#   estimate, not published (25 m minimum, capped at 60 m where the next
+#   taxilane is further away). Code C reference (main gear 13 m behind the
+#   nosewheel); other sizes end slightly different.
+# - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
+#   also says pushback is straight back unless instructed otherwise.
+# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
+#   wiki (date in the name); they are not official and the AIP takes
+#   precedence where both exist.
+
+stand 7
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 32
+end
+
+stand 7
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 75
+end
+
+stand 8
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 47
+end
+
+stand 8
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 89
+end
+
+stand 8
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 35
+turn face 106
+end
+
+stand 9
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 43
+end
+
+stand 9
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 85
+end
+
+stand 9
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 30
+turn face 106
+end
+
+stand 10
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 47
+end
+
+stand 10
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 90
+end
+
+stand 10
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 28
+turn face 101
+end
+
+stand 11
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 54
+end
+
+stand 11
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 97
+end
+
+stand 11
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 40
+turn face 078
+end
+
+stand 12
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 12
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 105
+end
+
+stand 12
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 48
+turn face 049
+end
+
+stand 13
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 13
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 13
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 123
+end
+
+stand 13
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 68
+turn face 045
+end
+
+stand 14
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 14
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 14
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 125
+end
+
+stand 14
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 76
+turn face 031
+end
+
+stand 15
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 15
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 15
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 124
+end
+
+stand 16
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 16
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 16
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 115
+end
+
+stand 16
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+turn face 345
+end
+
+stand 17
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 17
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 17
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 115
+end
+
+stand 17
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 57
+turn face 159
+end
+
+stand 18
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 18
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 18
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 118
+end
+
+stand 18
+name VATSIM Scandinavia 2026-09-27: long push onto TWY L facing TWY R (code D-E)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 63
+turn face 166
+end
+
+stand 19
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 19
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 19
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 137
+end
+
+stand 20
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 20
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 20
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 126
+end
+
+stand 21
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 21
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 21
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 127
+end
+
+stand 22
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 22
+name VATSIM Scandinavia 2026-09-27: straight push and start, DPSN 1 (code B-C)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 60
+end
+
+stand 22
+name VATSIM Scandinavia 2026-09-27: long push and start, DPSN 2 (code C-D)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 127
+end
+
+stand 23
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 24
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 24
+name VATSIM Scandinavia 2026-09-27: long push and start (straight)
+source VATSIM Scandinavia wiki ENZV (2026-09-27) - not official
+back 135
+end
+
+stand 25
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 37
+end
+
+stand 26
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 27
+end
+
+stand 27
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 30
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 31
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 32
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 33
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 34
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 55
+end
+
+stand 35
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 41
+end
+
+stand 36
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 44A
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 44B
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 45
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 46
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 47
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 63
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 301
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 302
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 30
+end
+
+stand 303
+name Straight pushback (no procedure published)
+source AIP Norway ENZV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 30
+end
+

@@ -1,0 +1,94 @@
+# ENEV - default pushback procedures (generated, do not edit by hand)
+#
+# Source: AIP Norway (Avinor eAIP), AIRAC 2026-11-26: ENEV AD 2.20 and the AD 2.24
+# charts "Aircraft Parking/Docking Chart" and "Aircraft Parking/Docking Chart - Coordinates".
+# For flight simulation only - not for real-world operations.
+#
+# - Stand positions from the published stand coordinates, stand headings from
+#   the lead-in lines on the parking/docking chart. Stands without a lead-in
+#   line or stop mark (self-manoeuvring, GA, helicopter) have no entry.
+# - Where AD 2.20 publishes no procedure, pushback is assumed straight back
+#   (the usual standard in Norway) until the main gear reaches the start of
+#   the painted taxi-out path (turn-off curves or taxilane centreline), so the
+#   aircraft can turn onto the taxilane on its own. This length is our
+#   estimate, not published (25 m minimum, capped at 60 m where the next
+#   taxilane is further away). Code C reference (main gear 13 m behind the
+#   nosewheel); other sizes end slightly different.
+# - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
+#   also says pushback is straight back unless instructed otherwise.
+# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
+#   wiki (date in the name); they are not official and the AIP takes
+#   precedence where both exist.
+
+stand 21
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 51
+end
+
+stand 22
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 49
+end
+
+stand 23
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 46
+end
+
+stand 24
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 46
+end
+
+stand 25
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 26
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 26B
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 26C
+name Straight pushback (no procedure published)
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 27
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 28
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 29
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 30
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENEV AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
