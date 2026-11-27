@@ -1,0 +1,347 @@
+# ENBR - default pushback procedures (generated, do not edit by hand)
+#
+# Source: AIP Norway (Avinor eAIP), AIRAC 2026-11-26: ENBR AD 2.20 and the AD 2.24
+# charts "Aircraft Parking/Docking Chart (scanned)" and "Aircraft Parking/Docking Chart - Coordinates (scanned, transcribed)".
+# For flight simulation only - not for real-world operations.
+#
+# - Stand positions from the published stand coordinates, stand headings from
+#   the lead-in lines on the parking/docking chart. Stands without a lead-in
+#   line or stop mark (self-manoeuvring, GA, helicopter) have no entry.
+# - Where AD 2.20 publishes no procedure, pushback is assumed straight back
+#   (the usual standard in Norway) until the main gear reaches the start of
+#   the painted taxi-out path (turn-off curves or taxilane centreline), so the
+#   aircraft can turn onto the taxilane on its own. This length is our
+#   estimate, not published (25 m minimum, capped at 60 m where the next
+#   taxilane is further away). Code C reference (main gear 13 m behind the
+#   nosewheel); other sizes end slightly different.
+# - ENBR AD 2.24 charts are scanned: stand coordinates transcribed by hand,
+#   lead-in lines taken from the yellow pixels of the parking chart (1:5500),
+#   so headings/lengths are less precise (a few metres / ~1-2 deg).
+# - AD 2.20 6.3 refers to the local Pushback Manual (not in the AIP).
+# - VATSIM Scandinavia wiki ENBR maps (2025-10-12): straight pushes to the stop bars,
+#   measured on the photos scaled with the AIP stand positions; turning and
+#   alternative routes on those maps are not included.
+# - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
+#   also says pushback is straight back unless instructed otherwise.
+# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
+#   wiki (date in the name); they are not official and the AIP takes
+#   precedence where both exist.
+
+stand 1
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 47
+end
+
+stand 1L
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 1R
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 54
+end
+
+stand 3
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 54
+end
+
+stand 3
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 51
+end
+
+stand 4
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 55
+end
+
+stand 4
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 52
+end
+
+stand 5
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 33
+end
+
+stand 5
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 50
+end
+
+stand 6
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 6
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 61
+end
+
+stand 7
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 46
+end
+
+stand 7
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 65
+end
+
+stand 8
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 8
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 84
+end
+
+stand 9
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 45
+end
+
+stand 9
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 55
+end
+
+stand 10
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 10
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 76
+end
+
+stand 11
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 52
+end
+
+stand 11
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 55
+end
+
+stand 15
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 16
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 16
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 53
+end
+
+stand 17
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 17
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 49
+end
+
+stand 18
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 18
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 46
+end
+
+stand 19
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 20
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 23
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 23
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 90
+end
+
+stand 24
+name Straight pushback (no procedure published) - 60 m, taxilane further
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 24
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 64
+end
+
+stand 25
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 52
+end
+
+stand 26
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 59
+end
+
+stand 26
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 67
+end
+
+stand 27
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 27
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 41
+end
+
+stand 28
+name Straight pushback (no procedure published) - length assumed
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 35
+end
+
+stand 28
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 55
+end
+
+stand 29
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 43
+end
+
+stand 29
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 27
+end
+
+stand 31
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 49
+end
+
+stand 32
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 32
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 56
+end
+
+stand 41
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 29
+end
+
+stand 41
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 62
+end
+
+stand 43
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 43
+name VATSIM Scandinavia 2025-10-12: straight push to stop bar
+source VATSIM Scandinavia wiki ENBR pushback maps (2025-10-12) - not official
+back 40
+end
+
+stand 46
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 47
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 28
+end
+
+stand 48
+name Straight pushback (no procedure published)
+source AIP Norway ENBR AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
