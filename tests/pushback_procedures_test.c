@@ -133,6 +133,13 @@ test_match(void)
     assert(pb_proc_pattern_matches("A1?", "Gate A12"));
     assert(!pb_proc_pattern_matches("A1?", "A1"));
     assert(pb_proc_pattern_matches("B1", "Stand b1"));
+    /* trailing note in parentheses (ENBR Gateway names) */
+    assert(pb_proc_pattern_matches("29", "29 (Terminal 2)"));
+    assert(pb_proc_pattern_matches("1L", "1L (Remote Apron S)"));
+    assert(pb_proc_pattern_matches("12", "Gate 12 (Schengen)"));
+    assert(!pb_proc_pattern_matches("2", "29 (Terminal 2)"));
+    assert(!pb_proc_pattern_matches("Terminal", "29 (Terminal 2)"));
+    assert(pb_proc_pattern_matches("29*", "29 (Terminal 2)"));
 
     /* exact before wildcard */
     assert(pb_proc_match(&set, "Gate A12", out, 8) == 2);

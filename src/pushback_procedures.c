@@ -425,11 +425,35 @@ glob_ci(const char *p, const char *s)
 bool
 pb_proc_pattern_matches(const char *pattern, const char *stand)
 {
+    char core[128];
     const char *last;
+    size_t n;
 
     if (glob_ci(pattern, stand))
         return true;
     last = strrchr(stand, ' ');
+    if (last != NULL && last[1] != '\0' && glob_ci(pattern, last + 1))
+        return true;
+    /*
+     * Scenery often appends a note in parentheses: "29 (Terminal 2)",
+     * "Gate 12 (Schengen)". Match the name without it as well (and its
+     * last word), but never words inside the note.
+     */
+    n = strlen(stand);
+    while (n > 0 && stand[n - 1] == ' ')
+        n--;
+    if (n == 0 || stand[n - 1] != ')' || (last = memchr(stand, '(', n)) == NULL)
+        return false;
+    n = (size_t)(last - stand);
+    while (n > 0 && stand[n - 1] == ' ')
+        n--;
+    if (n == 0 || n >= sizeof(core))
+        return false;
+    memcpy(core, stand, n);
+    core[n] = '\0';
+    if (glob_ci(pattern, core))
+        return true;
+    last = strrchr(core, ' ');
     return last != NULL && last[1] != '\0' && glob_ci(pattern, last + 1);
 }
 
