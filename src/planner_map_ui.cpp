@@ -64,7 +64,7 @@ constexpr float CLICK_DRAG_THRESHOLD = 6.0f;
 constexpr int VERTEX_BUDGET = 60000;   /* 16-bit ImDrawIdx limit guard */
 constexpr double STAND_MATCH_DIST = 40.0;
 constexpr double SNAP_DIST = 25.0;
-constexpr size_t MAX_PROC_MATCHES = 8;
+constexpr size_t MAX_PROC_MATCHES = 24;
 constexpr double TURN_DRAW_STEP = 5.0;
 
 const ImU32 COL_BG = IM_COL32(38, 52, 40, 255);
@@ -863,9 +863,21 @@ PlannerMapWindow::draw_side_panel()
     if (procs.n_matches == 0) {
         ImGui::TextDisabled(procs.stand[0] != '\0' ? "None for this stand" :
             "Stand not identified");
+    } else {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.8f, 0.3f, 1.0f));
+        ImGui::TextWrapped("For simulation only. You are responsible for "
+            "checking that the chosen procedure matches ATC instructions "
+            "and the rules of your online network (e.g. its pilot "
+            "briefing or wiki).");
+        ImGui::PopStyleColor();
     }
+    bool vatsim_header = false;
     for (size_t i = 0; i < procs.n_matches; i++) {
         const pb_proc_t *p = procs.matches[i];
+        if (!vatsim_header && strncmp(p->name, "VATSIM", 6) == 0) {
+            vatsim_header = true;
+            ImGui::TextDisabled("VATSIM (online network, not official):");
+        }
         ImGui::PushID((int)i);
         snprintf(buf, sizeof(buf), "%s%s", p->user ? "* " : "", p->name);
         if (big_button(buf)) {

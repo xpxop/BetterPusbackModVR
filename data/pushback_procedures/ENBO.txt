@@ -18,13 +18,22 @@
 #   stand 20 only a right turn is allowed (pilot's turn when taxiing out).
 # - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
 #   also says pushback is straight back unless instructed otherwise.
-# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
-#   wiki (date in the name); they are not official and the AIP takes
-#   precedence where both exist.
+# - Entries named "VATSIM Scandinavia <date>: ..." are the procedures published
+#   on the VATSIM Scandinavia wiki (page date in the name), listed in
+#   addition to the AIP entries even where they are the same, so pilots on
+#   the network can choose them. They are not official.
+# - YOU ARE RESPONSIBLE for checking that the chosen procedure matches ATC
+#   instructions and the rules of your online network (pilot briefing/wiki).
 
 stand 1
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 32
+end
+
+stand 1
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 32
 end
 
@@ -34,9 +43,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 42
 end
 
+stand 2
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 42
+end
+
 stand 3
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 27
+end
+
+stand 3
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 27
 end
 
@@ -46,9 +67,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 25
 end
 
+stand 4
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 25
+end
+
 stand 11
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 31
+end
+
+stand 11
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 31
 end
 
@@ -58,9 +91,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 39
 end
 
+stand 12
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 39
+end
+
 stand 13
 name Straight pushback (AIP AD 2.20 3.3: standard) - 60 m, taxilane further
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 13
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -70,9 +115,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 14
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 15
 name Straight pushback (AIP AD 2.20 3.3: standard) - 60 m, taxilane further
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 15
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -82,9 +139,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 37
 end
 
+stand 16
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 37
+end
+
 stand 17
 name Straight pushback (AIP AD 2.20 3.3: standard) - 60 m, taxilane further
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 17
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -94,9 +163,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 18
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 19
 name Straight pushback (AIP AD 2.20 3.3: standard) - 60 m, taxilane further
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 19
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -106,9 +187,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 20
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 21
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 33
+end
+
+stand 21
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 33
 end
 
@@ -118,9 +211,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 25
 end
 
+stand 22
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 25
+end
+
 stand 23
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 36
+end
+
+stand 23
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 36
 end
 
@@ -130,9 +235,21 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 42
 end
 
+stand 24
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 42
+end
+
 stand 25
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 25
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 25
 end
 
@@ -142,15 +259,33 @@ source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 26
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 40
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 25
 end
 
+stand 40
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
+back 25
+end
+
 stand 41
 name Straight pushback (AIP AD 2.20 3.3: standard)
 source AIP Norway ENBO AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 41
+name VATSIM Scandinavia 2026-02-11: straight back (length estimated)
+source VATSIM Scandinavia wiki Norway general recommendations (2026-02-11): straight back unless ATC specifies - not official
 back 25
 end
 

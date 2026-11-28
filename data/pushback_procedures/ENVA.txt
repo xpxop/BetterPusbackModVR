@@ -16,13 +16,22 @@
 #   nosewheel); other sizes end slightly different.
 # - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
 #   also says pushback is straight back unless instructed otherwise.
-# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
-#   wiki (date in the name); they are not official and the AIP takes
-#   precedence where both exist.
+# - Entries named "VATSIM Scandinavia <date>: ..." are the procedures published
+#   on the VATSIM Scandinavia wiki (page date in the name), listed in
+#   addition to the AIP entries even where they are the same, so pilots on
+#   the network can choose them. They are not official.
+# - YOU ARE RESPONSIBLE for checking that the chosen procedure matches ATC
+#   instructions and the rules of your online network (pilot briefing/wiki).
 
 stand 22
 name Straight pushback (AIP AD 2.20 4.1: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 31
+end
+
+stand 22
+name VATSIM Scandinavia 2026-01-05: straight push to stop bar
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 31
 end
 
@@ -39,6 +48,13 @@ back 23
 turn face 000
 end
 
+stand 23
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 23
+turn face 000
+end
+
 stand 24
 name Straight pushback (turboprops; CRJ if necessary, AIP AD 2.20 4.2)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -48,6 +64,13 @@ end
 stand 24
 name Face north on TWY H (jets, AIP AD 2.20 4.2: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 23
+turn face 000
+end
+
+stand 24
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 23
 turn face 000
 end
@@ -65,6 +88,13 @@ back 23
 turn face 000
 end
 
+stand 25
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 23
+turn face 000
+end
+
 stand 26
 name Straight pushback (turboprops; CRJ if necessary, AIP AD 2.20 4.2)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -74,6 +104,13 @@ end
 stand 26
 name Face north on TWY H (jets, AIP AD 2.20 4.2: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 23
+turn face 000
+end
+
+stand 26
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 23
 turn face 000
 end
@@ -91,6 +128,13 @@ back 23
 turn face 000
 end
 
+stand 27
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 23
+turn face 000
+end
+
 stand 28
 name Straight pushback (turboprops; CRJ if necessary, AIP AD 2.20 4.2)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -100,6 +144,13 @@ end
 stand 28
 name Face north on TWY H (jets, AIP AD 2.20 4.2: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 23
+turn face 000
+end
+
+stand 28
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 23
 turn face 000
 end
@@ -113,6 +164,13 @@ end
 stand 29
 name Face north on TWY H (jets, AIP AD 2.20 4.2: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 24
+turn face 000
+end
+
+stand 29
+name VATSIM Scandinavia 2026-01-05: face north on TWY H (jets)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 24
 turn face 000
 end
@@ -151,6 +209,26 @@ back 64
 turn face 270
 end
 
+stand 30
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 30
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 32
+turn face 270
+end
+
+stand 30
+name VATSIM Scandinavia 2026-01-05: onto TWY Y facing west (code D)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 64
+turn face 270
+end
+
 stand 31
 name Straight pushback (code C up to B738, AIP AD 2.20 4.4: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -185,6 +263,26 @@ back 64
 turn face 270
 end
 
+stand 31
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 31
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 32
+turn face 270
+end
+
+stand 31
+name VATSIM Scandinavia 2026-01-05: onto TWY Y facing west (code D)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 64
+turn face 270
+end
+
 stand 32
 name Straight pushback (code C up to B738, AIP AD 2.20 4.4: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -201,6 +299,19 @@ end
 stand 32
 name Onto TWY W facing west (A321, B739, MD80/90, AIP AD 2.20 4.4)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 32
+turn face 270
+end
+
+stand 32
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 32
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 32
 turn face 270
 end
@@ -225,6 +336,19 @@ back 32
 turn face 270
 end
 
+stand 33
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 33
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 32
+turn face 270
+end
+
 stand 34
 name Straight pushback (code C up to B738, AIP AD 2.20 4.4: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -241,6 +365,19 @@ end
 stand 34
 name Onto TWY W facing west (A321, B739, MD80/90, AIP AD 2.20 4.4)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 32
+turn face 270
+end
+
+stand 34
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 34
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 32
 turn face 270
 end
@@ -265,6 +402,19 @@ back 32
 turn face 270
 end
 
+stand 35
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 35
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 32
+turn face 270
+end
+
 stand 36
 name Straight pushback (code C up to B738, AIP AD 2.20 4.4: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -285,6 +435,19 @@ back 32
 turn face 270
 end
 
+stand 36
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 36
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 32
+turn face 270
+end
+
 stand 37
 name Straight pushback (code C up to B738, AIP AD 2.20 4.4: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -301,6 +464,19 @@ end
 stand 37
 name Onto TWY W facing west (A321, B739, MD80/90, AIP AD 2.20 4.4)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 32
+turn face 270
+end
+
+stand 37
+name VATSIM Scandinavia 2026-01-05: straight push (up to B738)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 60
+end
+
+stand 37
+name VATSIM Scandinavia 2026-01-05: onto TWY W facing west (A321, B739, MD80/90)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 32
 turn face 270
 end
@@ -317,6 +493,20 @@ name Turn out onto TWY Y centreline facing west (AIP AD 2.20 4.5)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 34
 turn face 270
+end
+
+stand 38
+name VATSIM Scandinavia 2026-01-05: onto TWY Y facing west
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 34
+turn face 270
+end
+
+stand 38
+name VATSIM Scandinavia 2026-01-05: alternative, onto TWY Y facing east
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 34
+turn face 090
 end
 
 stand 39
@@ -333,6 +523,20 @@ back 21
 turn face 270
 end
 
+stand 39
+name VATSIM Scandinavia 2026-01-05: onto TWY Y facing west
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 21
+turn face 270
+end
+
+stand 39
+name VATSIM Scandinavia 2026-01-05: alternative, onto TWY Y facing east
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 47
+turn face 090
+end
+
 stand 40
 name Straight pushback (CRJ, AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -344,6 +548,14 @@ name Face north on TWY J (AIP AD 2.20 4.6: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 49
 turn face 003
+end
+
+stand 40
+name VATSIM Scandinavia 2026-01-05: face north on TWY J at J1
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 49
+turn face 003
+forward 4
 end
 
 stand 40L
@@ -380,6 +592,14 @@ back 46
 turn face 003
 end
 
+stand 41
+name VATSIM Scandinavia 2026-01-05: face north on TWY J at J1
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 46
+turn face 003
+forward 50
+end
+
 stand 41L
 name Straight pushback (CRJ, AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -394,6 +614,14 @@ turn face 356
 forward 77
 end
 
+stand 41L
+name VATSIM Scandinavia 2026-01-05: face north on TWY J, pull to J1 (code D/E)
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 33
+turn face 003
+forward 69
+end
+
 stand 42
 name Straight pushback (CRJ, AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -405,6 +633,13 @@ name Face north on TWY J (AIP AD 2.20 4.6: standard)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 49
 turn face 358
+end
+
+stand 42
+name VATSIM Scandinavia 2026-01-05: face north on TWY J
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 44
+turn face 003
 end
 
 stand 43
@@ -421,6 +656,14 @@ turn face 353
 forward 6
 end
 
+stand 43
+name VATSIM Scandinavia 2026-01-05: face north on TWY J, disconnect at J2
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 42
+turn face 003
+forward 12
+end
+
 stand 44
 name Straight pushback (CRJ, AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -435,6 +678,14 @@ turn face 003
 forward 56
 end
 
+stand 44
+name VATSIM Scandinavia 2026-01-05: face north on TWY J, pull to J2
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
+back 40
+turn face 003
+forward 56
+end
+
 stand 45
 name Straight pushback (CRJ, AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
@@ -444,6 +695,14 @@ end
 stand 45
 name Face north on TWY J, disconnect at J2 (AIP AD 2.20 4.6)
 source AIP Norway ENVA AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 37
+turn face 003
+forward 101
+end
+
+stand 45
+name VATSIM Scandinavia 2026-01-05: face north on TWY J, pull to J2
+source VATSIM Scandinavia wiki ENVA (2026-01-05)
 back 37
 turn face 003
 forward 101

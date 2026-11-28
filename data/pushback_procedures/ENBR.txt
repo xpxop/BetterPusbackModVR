@@ -19,13 +19,19 @@
 #   so headings/lengths are less precise (a few metres / ~1-2 deg).
 # - AD 2.20 6.3 refers to the local Pushback Manual (not in the AIP).
 # - VATSIM Scandinavia wiki ENBR maps (2025-10-12): straight pushes to the stop bars,
-#   measured on the photos scaled with the AIP stand positions; turning and
-#   alternative routes on those maps are not included.
+#   measured on the photos scaled with the AIP stand positions. NOT included
+#   (not reliably measurable on the photos): the curved routes - code D/E
+#   turns at 1, 10 and 24, B752 push-and-pull at 23/24, turning pushes at 43-48,
+#   alternative long pushes at 27/28 and 46/47, own-power turn-outs. Stands not
+#   on the maps: the wiki says to ask ground. Check the wiki before pushing.
 # - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
 #   also says pushback is straight back unless instructed otherwise.
-# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
-#   wiki (date in the name); they are not official and the AIP takes
-#   precedence where both exist.
+# - Entries named "VATSIM Scandinavia <date>: ..." are the procedures published
+#   on the VATSIM Scandinavia wiki (page date in the name), listed in
+#   addition to the AIP entries even where they are the same, so pilots on
+#   the network can choose them. They are not official.
+# - YOU ARE RESPONSIBLE for checking that the chosen procedure matches ATC
+#   instructions and the rules of your online network (pilot briefing/wiki).
 
 stand 1
 name Straight pushback (no procedure published)

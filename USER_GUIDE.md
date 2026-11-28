@@ -257,6 +257,18 @@ as tightly as written.
 The stand is identified from the recognized published start; otherwise the
 nearest `apt.dat` stand within 40 m of the aircraft is used.
 
+**Official and VATSIM procedures.** For the Norwegian airports the list shows
+the official procedures (from the AIP) first, then the procedures published by
+the VATSIM Scandinavia wiki under the heading *VATSIM (online network, not
+official)*, named `VATSIM Scandinavia <date>: ...`. Choose the one that fits
+how you fly. Hover a procedure to see its source.
+
+> **You are responsible for the procedure you choose.** The procedures are for
+> flight simulation only. Always check that the chosen procedure matches your
+> ATC instructions and the rules of your online network (for VATSIM: the
+> vACC's pilot briefing or wiki). The map planner shows this reminder above
+> the list.
+
 ## 6. Emergency Tow
 
 After a completed normal operation, **Call tow back** starts a guarded one-time

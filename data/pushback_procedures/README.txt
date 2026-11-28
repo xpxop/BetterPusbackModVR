@@ -21,8 +21,15 @@ survive plugin updates. Edit that folder rather than this one.
 
 Please only enter procedures you transcribed from an official source (the
 airport's AIP chapter AD 2.20 "Local aerodrome regulations" / AD 2.24 charts,
-the airport operator's ground handling or apron manual, ...) and record that
-source with the 'source' keyword. Do not use them for real-world operations.
+the airport operator's ground handling or apron manual, ...) or from an
+online network's published pilot information, and record that source with
+the 'source' keyword. Name network procedures after the network and date
+(e.g. "VATSIM Scandinavia 2026-07-28: ...") and list them after the official
+ones; the planner shows names starting with "VATSIM" under their own heading.
+Do not use them for real-world operations.
+
+YOU ARE RESPONSIBLE for the procedure you choose: check that it matches your
+ATC instructions and the rules of your online network before pushing back.
 
 Format (see EXAMPLE.txt; '#' starts a comment, keywords are case-insensitive)
 -----------------------------------------------------------------------------

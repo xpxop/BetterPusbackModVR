@@ -23,10 +23,14 @@
 #   45 m is an assumption. The turn direction after the push (para 8.7) is
 #   given in the name; it is the pilot's turn when taxiing out.
 # - Where ATC gives a choice of release points, each one is a separate entry.
-# - Entries named "VATSIM Scandinavia 2026-07-28: ..." are straight pushes to
-#   the painted stop bars as drawn on the VATSIM Scandinavia wiki pushback
-#   maps, scaled with the AIP stand positions (a few metres accuracy). They
-#   are not official; the AIP entries take precedence.
+# - Entries named "VATSIM Scandinavia 2026-07-28: ..." are all routes drawn on
+#   the VATSIM Scandinavia wiki ENGM pushback maps: straight pushes to the
+#   painted stop bars (measured on the maps, scaled with the AIP stand
+#   positions, a few metres accuracy) and pushes to release positions (same
+#   geometry as the AIP entries). Listed even where they equal the AIP entry,
+#   so online pilots can pick the network's version. Not official.
+# - YOU ARE RESPONSIBLE for checking that the chosen procedure matches ATC
+#   instructions and the rules of your online network (pilot briefing/wiki).
 
 stand 9
 name RP 54 facing west (code C)
@@ -116,6 +120,13 @@ end
 stand 15
 name RP 52 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 31
+turn face 105 radius 72
+end
+
+stand 15
+name VATSIM Scandinavia 2026-07-28: push to position 52 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 31
 turn face 105 radius 72
 end
@@ -250,6 +261,16 @@ turn face 243
 back 9
 end
 
+stand 36
+name VATSIM Scandinavia 2026-07-28: push to position 14 facing SW
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 15
+turn face 239
+back 109
+turn face 243
+back 9
+end
+
 stand 38
 name RP 20 facing south (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -276,9 +297,24 @@ turn face 243
 back 50
 end
 
+stand 38
+name VATSIM Scandinavia 2026-07-28: push to position 14 facing SW
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 63
+turn face 243
+back 50
+end
+
 stand 39
 name RP 4 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 18
+turn face 285 radius 82
+end
+
+stand 39
+name VATSIM Scandinavia 2026-07-28: push to position 4 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 18
 turn face 285 radius 82
 end
@@ -299,6 +335,24 @@ source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-
 back 69
 turn face 286
 back 120
+end
+
+stand 40
+name VATSIM Scandinavia 2026-07-28: push to position 15 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 69
+turn face 286
+back 120
+end
+
+stand 40
+name VATSIM Scandinavia 2026-07-28: push to position 20 facing S
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 15
+turn face 191
+back 205
+turn face 196
+back 32
 end
 
 stand 41
@@ -332,6 +386,13 @@ back 60
 turn face 285 radius 40
 end
 
+stand 41
+name VATSIM Scandinavia 2026-07-28: push to position 4 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 60
+turn face 285 radius 40
+end
+
 stand 43
 name RP 3 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -354,6 +415,14 @@ source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-
 back 29
 turn face 106
 forward 275
+end
+
+stand 43
+name VATSIM Scandinavia 2026-07-28: push to position 10 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 29
+turn face 106
+forward 148
 end
 
 stand 44
@@ -387,6 +456,21 @@ turn face 106
 forward 325
 end
 
+stand 44
+name VATSIM Scandinavia 2026-07-28: push to position 15 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 37
+turn face 286 radius 83
+end
+
+stand 44
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 91
+turn face 106
+forward 158
+end
+
 stand 45
 name RP 3 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -409,6 +493,14 @@ source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-
 back 29
 turn face 106
 forward 231
+end
+
+stand 45
+name VATSIM Scandinavia 2026-07-28: push to position 10 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 29
+turn face 106
+forward 104
 end
 
 stand 46
@@ -473,6 +565,21 @@ turn face 106
 forward 278
 end
 
+stand 46
+name VATSIM Scandinavia 2026-07-28: push to position 15 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 87
+turn face 286 radius 34
+end
+
+stand 46
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 92
+turn face 106
+forward 108
+end
+
 stand 47
 name RP 3 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -528,6 +635,22 @@ turn face 106
 forward 221
 end
 
+stand 48
+name VATSIM Scandinavia 2026-07-28: push to position 15 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 90
+turn face 286
+forward 51
+end
+
+stand 48
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 91
+turn face 106
+forward 53
+end
+
 stand 49
 name RP 10 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -547,6 +670,22 @@ end
 stand 49
 name RP 9 facing on TWY L CENTER (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 47
+turn face 105
+forward 10
+end
+
+stand 49
+name VATSIM Scandinavia 2026-07-28: push to position 10 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 32
+turn face 106
+forward 14
+end
+
+stand 49
+name VATSIM Scandinavia 2026-07-28: push to position 9 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 47
 turn face 105
 forward 10
@@ -582,6 +721,20 @@ turn face 106
 forward 163
 end
 
+stand 50
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 80
+turn face 106 radius 35
+end
+
+stand 50
+name VATSIM Scandinavia 2026-07-28: push to position 17 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 26
+turn face 286 radius 86
+end
+
 stand 51
 name RP 11 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -593,6 +746,22 @@ end
 stand 51
 name RP 8 facing on TWY L CENTER (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 51
+turn face 105
+forward 11
+end
+
+stand 51
+name VATSIM Scandinavia 2026-07-28: push to position 11 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 37
+turn face 106
+forward 54
+end
+
+stand 51
+name VATSIM Scandinavia 2026-07-28: push to position 8 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 51
 turn face 105
 forward 11
@@ -636,6 +805,36 @@ turn face 107
 forward 185
 end
 
+stand 52
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 33
+turn face 106 radius 65
+end
+
+stand 52
+name VATSIM Scandinavia 2026-07-28: push to position 17 facing W, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 15
+turn face 286 radius 80
+end
+
+stand 52
+name VATSIM Scandinavia 2026-07-28: push to position 18 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 67
+turn face 106
+forward 133
+end
+
+stand 52
+name VATSIM Scandinavia 2026-07-28: push to position 19 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 69
+turn face 107
+forward 190
+end
+
 stand 53
 name RP 12 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -660,6 +859,22 @@ turn face 105
 back 98
 end
 
+stand 53
+name VATSIM Scandinavia 2026-07-28: push to position 12 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 55
+turn face 105
+forward 11
+end
+
+stand 53
+name VATSIM Scandinavia 2026-07-28: push to position 7 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 66
+turn face 106
+forward 13
+end
+
 stand 54
 name RP 16 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -670,6 +885,20 @@ end
 stand 54
 name RP 17 facing west (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 28
+turn face 286 radius 48
+end
+
+stand 54
+name VATSIM Scandinavia 2026-07-28: push to position 16 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 5
+turn face 106 radius 74
+end
+
+stand 54
+name VATSIM Scandinavia 2026-07-28: push to position 17 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 28
 turn face 286 radius 48
 end
@@ -698,9 +927,56 @@ turn face 107
 forward 120
 end
 
+stand 56
+name VATSIM Scandinavia 2026-07-28: push to position 17 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 78
+turn face 286
+forward 43
+end
+
+stand 56
+name VATSIM Scandinavia 2026-07-28: push to position 18 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 79
+turn face 106
+forward 63
+end
+
+stand 56
+name VATSIM Scandinavia 2026-07-28: push to position 19 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 80
+turn face 107
+forward 120
+end
+
 stand 58
 name RP 19 facing east (all ACFT)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 79
+turn face 107
+forward 40
+end
+
+stand 58
+name VATSIM Scandinavia 2026-07-28: push to position 17 facing W
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 77
+turn face 286
+forward 123
+end
+
+stand 58
+name VATSIM Scandinavia 2026-07-28: push to position 18 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 62
+turn face 106 radius 47
+end
+
+stand 58
+name VATSIM Scandinavia 2026-07-28: push to position 19 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 79
 turn face 107
 forward 40
@@ -762,6 +1038,14 @@ turn face 261
 back 95
 turn face 243
 back 5
+end
+
+stand 61
+name VATSIM Scandinavia 2026-07-28: push to position 20 facing S
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 102
+turn face 196
+back 144
 end
 
 stand 64
@@ -859,6 +1143,22 @@ back 45
 end
 
 stand 76
+name VATSIM Scandinavia 2026-07-28: push to position 30 facing S, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 79
+turn face 196
+forward 4
+end
+
+stand 76
+name VATSIM Scandinavia 2026-07-28: push to position 31 facing N, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 79
+turn face 016
+forward 132
+end
+
+stand 76
 name VATSIM Scandinavia 2026-07-28: straight push to stop bar
 source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 62
@@ -892,6 +1192,22 @@ turn face 016
 forward 199
 end
 
+stand 79
+name VATSIM Scandinavia 2026-07-28: push to position 20 facing S, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 62
+turn face 196
+forward 6
+end
+
+stand 79
+name VATSIM Scandinavia 2026-07-28: push to position 21 facing N, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 60
+turn face 016
+forward 199
+end
+
 stand 80
 name RP 30 facing south (code D/E)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -920,6 +1236,22 @@ stand 80
 name Straight pushback, then turn left (code C or smaller)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
 back 45
+end
+
+stand 80
+name VATSIM Scandinavia 2026-07-28: push to position 30 facing S, code D-F
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 79
+turn face 196
+forward 89
+end
+
+stand 80
+name VATSIM Scandinavia 2026-07-28: push to position 31 facing N, code D-F
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 79
+turn face 016
+forward 47
 end
 
 stand 80
@@ -968,6 +1300,22 @@ turn face 016
 forward 106
 end
 
+stand 87
+name VATSIM Scandinavia 2026-07-28: push to position 20 facing S, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 62
+turn face 196
+forward 100
+end
+
+stand 87
+name VATSIM Scandinavia 2026-07-28: push to position 21 facing N, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 60
+turn face 016
+forward 106
+end
+
 stand 89
 name Straight pushback, then turn left (code C or smaller)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
@@ -994,6 +1342,14 @@ source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-
 back 72
 turn face 286
 forward 62
+end
+
+stand 171L
+name VATSIM Scandinavia 2026-07-28: push to position 53 facing W, code D-F
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 60
+turn face 286
+forward 50
 end
 
 stand 171L
@@ -1216,9 +1572,33 @@ turn face 105
 back 98
 end
 
+stand 188
+name VATSIM Scandinavia 2026-07-28: push to position 7 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 61
+turn face 106
+forward 11
+end
+
+stand 188
+name VATSIM Scandinavia 2026-07-28: push to position 8 facing E, code D/E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
+back 62
+turn face 105
+back 98
+end
+
 stand 189
 name RP 6 facing east (code C)
 source AIP Norway ENGM AD 2.20 para 8.9, AD 2.24 charts 2-4/2-5/2-6 (AIRAC 2026-11-26)
+back 31
+turn face 105
+back 42
+end
+
+stand 189
+name VATSIM Scandinavia 2026-07-28: push to position 6 facing E
+source VATSIM Scandinavia wiki ENGM pushback maps (2026-07-28) - not official
 back 31
 turn face 105
 back 42

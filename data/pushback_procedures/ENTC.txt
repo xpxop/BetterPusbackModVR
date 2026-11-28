@@ -16,13 +16,22 @@
 #   nosewheel); other sizes end slightly different.
 # - The VATSIM Scandinavia wiki (Norway general recommendations, 2026-02-11)
 #   also says pushback is straight back unless instructed otherwise.
-# - Entries named "VATSIM Scandinavia ..." come from the VATSIM Scandinavia
-#   wiki (date in the name); they are not official and the AIP takes
-#   precedence where both exist.
+# - Entries named "VATSIM Scandinavia <date>: ..." are the procedures published
+#   on the VATSIM Scandinavia wiki (page date in the name), listed in
+#   addition to the AIP entries even where they are the same, so pilots on
+#   the network can choose them. They are not official.
+# - YOU ARE RESPONSIBLE for checking that the chosen procedure matches ATC
+#   instructions and the rules of your online network (pilot briefing/wiki).
 
 stand 12
 name Straight pushback (no procedure published)
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 25
+end
+
+stand 12
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 25
 end
 
@@ -32,9 +41,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 49
 end
 
+stand 13
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 49
+end
+
 stand 14
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 14
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -44,9 +65,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 15
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 16
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 16
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -56,9 +89,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 17
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 18
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 18
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -68,9 +113,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 19
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 20
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 20
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -80,9 +137,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 21
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 22
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 22
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -92,9 +161,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 23
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 24
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 24
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -104,9 +185,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 40
 end
 
+stand 25
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 40
+end
+
 stand 26
 name Straight pushback (no procedure published)
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 40
+end
+
+stand 26
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 40
 end
 
@@ -116,9 +209,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 25
 end
 
+stand 40
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 25
+end
+
 stand 41
 name Straight pushback (no procedure published)
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 26
+end
+
+stand 41
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 26
 end
 
@@ -128,9 +233,21 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 39
 end
 
+stand 42
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 39
+end
+
 stand 54
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 54
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
@@ -140,15 +257,33 @@ source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 55
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 56
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
 back 60
 end
 
+stand 56
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
+back 60
+end
+
 stand 57
 name Straight pushback (no procedure published) - 60 m, taxilane further
 source AIP Norway ENTC AD 2.20/AD 2.24 (AIRAC 2026-11-26)
+back 60
+end
+
+stand 57
+name VATSIM Scandinavia 2024-09-22: straight back (length estimated)
+source VATSIM Scandinavia wiki ENTC Tromsø (2024-09-22): straight back unless ATC specifies - not official
 back 60
 end
 
