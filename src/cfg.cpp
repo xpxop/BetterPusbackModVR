@@ -15,6 +15,7 @@
 /*
  * Copyright 2022 Saso Kiselkov. All rights reserved.
  * Copyright 2024 Robert Wellinger. All rights reserved.
+ * Portions Copyright 2026 xpxop. All rights reserved.
  */
 
 #include <curl/curl.h>
@@ -71,7 +72,7 @@ bool_t setup_view_callback_is_alive = B_FALSE;
 
 #define COPYRIGHT1                                                             \
   "BetterPushback " BP_PLUGIN_VERSION                                          \
-  "       © 2017-" COPYRIGHT_YEAR " S.Kiselkov, Robwell, O.Butler,  Ezsimulations. All rights reserved."
+  "       © 2017-" COPYRIGHT_YEAR " S.Kiselkov, Robwell, O.Butler,  Ezsimulations, xpxop. All rights reserved."
 #define COPYRIGHT2                                                             \
   "BetterPushback is open-source software. See COPYING for more information."
 

@@ -171,6 +171,26 @@ There is no idea to steal it from you. If you don't like this effort. Just say a
 
 Thanks
 
+### Changes in this fork (xpxop)
+
+This fork ([xpxop/BetterPusbackModVR](https://github.com/xpxop/BetterPusbackModVR))
+builds on the work above. Contributions by xpxop (2026), under the same CDDL
+1.0 licence (see `COPYING`); the original copyright notices are unchanged:
+
+- VR-capable map window planner (`airport_map.c`, `planner_map_ui.cpp`,
+  `planner_api.h`) driving the existing route planner.
+- Stand default pushback procedures (`pushback_procedures.c`) and procedure
+  files for Norwegian airports (ENGM, ENBR, ENTO, ENVA, ENZV and others),
+  derived from the public AIP Norway, with clearly labelled VATSIM
+  Scandinavia wiki entries. For flight simulation only.
+- libacfutils crash handler enabled (backtraces in `Log.txt`), map planner
+  fixes, unit tests.
+
+Files written for this fork carry "Copyright 2026 xpxop"; existing files that
+were changed carry "Portions Copyright 2026 xpxop". These contributions were
+co-authored with Claude Code (Anthropic's AI coding assistant) and designed,
+reviewed and tested in X-Plane 12 by xpxop.
+
 ## Downloading BetterPushback
 
 You can get the last binary release from here:

@@ -15,6 +15,7 @@
 /*
  * Copyright 2022 Saso Kiselkov. All rights reserved.
  * Copyright 2024 Robert Wellinger. All rights reserved.
+ * Portions Copyright 2026 xpxop. All rights reserved.
  */
 
 #include <stddef.h>

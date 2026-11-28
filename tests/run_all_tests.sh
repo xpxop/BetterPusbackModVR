@@ -1,4 +1,5 @@
 #!/bin/sh
+# Portions Copyright 2026 xpxop. Supplied under the CDDL 1.0 (see COPYING).
 set -eu
 
 test_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
